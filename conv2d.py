@@ -31,47 +31,63 @@ def conv2d(input_data, data_format, kernel_shape, stride_, dtype):
     output_data = tf.nn.conv2d(input_data, weights, strides=strides, padding='SAME', data_format=data_format)
     return output_data
 
-def main(input_tensor_shape, data_format, kernel_shape, stride_, dtype, n_iter, n_warm, compute_type):
+def main(input_tensor_shape, data_format, kernel_shape, stride_, dtype, n_iter, n_warm, compute_type, enable_xla, agg_placement):
 
-    with tf.device('/device:gpu:0'):
+    if dtype == 'float16':
+        tensor_type=tf.float16
+    elif dtype == 'float32':
+        tensor_type=tf.float32
+    else:
+        raise Exception('data type can only be float16 or float32')
+    
+    if enable_xla:
+        gpu_dev = "/device:XLA_GPU:0"
+        cpu_dev = "/device:XLA_CPU:0"
+    else:
+        gpu_dev = "/device:GPU:0"
+        cpu_dev = "/device:CPU:0"
+        
+    if agg_placement:
+        agg_dev = cpu_dev
+    else:
+        agg_dev = gpu_dev
 
-        if dtype == 'float16':
-            tensor_type=tf.float16
-        elif dtype == 'float32':
-            tensor_type=tf.float32
-        else:
-            raise Exception('data type can only be float16 or float32')
-
-        #shapes
-        #input_tensor_shape = [int(i) for i in input_tensor_shape.split(',')]
-        #kernel_shape = [int(i) for i in kernel_shape.split(',')]
+    with tf.device(agg_dev):
+        #input tensor
+        input_image = tf.random_uniform(shape=input_tensor_shape, minval=0., maxval=1., dtype=dtype) 
+        
+    with tf.device(gpu_dev):
         
         #create network
-        input_image = tf.random_uniform(shape=input_tensor_shape, minval=0., maxval=1., dtype=dtype) #np.ndarray(input_tensor_shape, dtype=dtype)
+        #input_image = tf.random_uniform(shape=input_tensor_shape, minval=0., maxval=1., dtype=dtype) #np.ndarray(input_tensor_shape, dtype=dtype)
         output_result = conv2d(input_image, data_format, kernel_shape, stride_, tensor_type) 
         
         #init ops
         init_op = tf.global_variables_initializer()
         
-        #resul ops
-        if compute_type=="forward":
-            exec_op = tf.identity(output_result)
-        elif compute_type=="backward":
-            peudo_loss = tf.nn.l2_loss(output_result)
+    #resul ops
+    if compute_type=="forward":
+        with tf.device(gpu_dev):
+            exec_op = output_result
+    elif compute_type=="backward":
+        with tf.device(agg_dev):
+            pseudo_loss = tf.nn.l2_loss(output_result)
+        with tf.device(gpu_dev):
             opt = tf.train.GradientDescentOptimizer(0.5)
             exec_op = opt.compute_gradients(pseudo_loss)
-        else:
-            raise ValueError("Error, compute_type should be either forward or backward")
+    else:
+        raise ValueError("Error, compute_type should be either forward or backward")
    
-    with tf.Session(config=tf.ConfigProto(allow_soft_placement=True,log_device_placement=True)) as sess:
+    #start session
+    with tf.Session(config=tf.ConfigProto(allow_soft_placement=False,log_device_placement=True)) as sess:
         sess.run(init_op)
         
-        print("warming up")
+        print("warming up for {} steps".format(n_warm))
         for i in range(n_warm):
             result = sess.run(exec_op)
         print("done")
         
-        print("starting")
+        print("running for {} steps".format(n_iter))
         start = time.time()
         for i in range(n_iter):
             result = sess.run(exec_op)
@@ -93,6 +109,8 @@ if __name__ == '__main__':
     AP.add_argument('--num_iterations', type=int, default=100, help='the number of iterations')
     AP.add_argument('--num_warmups', type=int, default=10, help='number of warmup steps')
     AP.add_argument('--compute_type', type=str, default="forward", help='forward or backward pass')
+    AP.add_argument('--enable_xla', action="store_true", help="enable XLA support")
+    AP.add_argument('--aggressive_placement', action="store_true", help='if enabled, place everything which is not convolution on the CPU')
     parsed = AP.parse_args()
     
     #print args
@@ -107,7 +125,9 @@ if __name__ == '__main__':
          dtype=parsed.dtype,
          n_iter=parsed.num_iterations,
          n_warm=parsed.num_warmups,
-         compute_type=parsed.compute_type)
+         compute_type=parsed.compute_type,
+         enable_xla=parsed.enable_xla,
+         agg_placement=parsed.aggressive_placement)
     
     
 
