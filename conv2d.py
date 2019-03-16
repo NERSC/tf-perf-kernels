@@ -31,7 +31,7 @@ def conv2d(input_data, data_format, kernel_shape, stride_, dtype):
     output_data = tf.nn.conv2d(input_data, weights, strides=strides, padding='SAME', data_format=data_format)
     return output_data
 
-def main(input_tensor_shape, data_format, kernel_shape, stride_, dtype, n_iter, n_warm, compute_type, enable_xla, agg_placement):
+def main(input_tensor_shape, data_format, kernel_shape, stride, dtype, n_iter, n_warm, compute_type, enable_xla, agg_placement):
 
     if dtype == 'float16':
         tensor_type=tf.float16
@@ -59,8 +59,7 @@ def main(input_tensor_shape, data_format, kernel_shape, stride_, dtype, n_iter, 
     with tf.device(gpu_dev):
         
         #create network
-        #input_image = tf.random_uniform(shape=input_tensor_shape, minval=0., maxval=1., dtype=dtype) #np.ndarray(input_tensor_shape, dtype=dtype)
-        output_result = conv2d(input_image, data_format, kernel_shape, stride_, tensor_type) 
+        output_result = conv2d(input_image, data_format, kernel_shape, stride, tensor_type) 
         
         #init ops
         init_op = tf.global_variables_initializer()
@@ -121,7 +120,7 @@ if __name__ == '__main__':
     main(input_tensor_shape=parsed.input_tensor_shape,
          data_format=parsed.data_format,
          kernel_shape=parsed.kernel_shape,
-         stride_=parsed.stride,
+         stride=parsed.stride,
          dtype=parsed.dtype,
          n_iter=parsed.num_iterations,
          n_warm=parsed.num_warmups,
