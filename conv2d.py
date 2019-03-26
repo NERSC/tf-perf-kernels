@@ -6,6 +6,13 @@ import tensorflow as tf
 import numpy as np
 import argparse
 import time
+try:
+    import pycuda.autoinit
+    import pycuda as pyc
+    have_pycuda=True
+except:
+    print("pycuda not installed")
+    have_pycuda=False
 
 warnings.simplefilter('ignore')
 tf.logging.set_verbosity(tf.logging.ERROR)
@@ -30,6 +37,7 @@ def conv2d(input_data, data_format, kernel_shape, stride_, dtype):
         strides = [1,stride_,stride_,1]
     output_data = tf.nn.conv2d(input_data, weights, strides=strides, padding='SAME', data_format=data_format)
     return output_data
+
 
 def main(input_tensor_shape, data_format, kernel_shape, stride, dtype, n_iter, n_warm, compute_type, enable_xla, agg_placement):
 
@@ -69,16 +77,19 @@ def main(input_tensor_shape, data_format, kernel_shape, stride, dtype, n_iter, n
         with tf.device(gpu_dev):
             exec_op = output_result
     elif compute_type=="backward":
-        with tf.device(agg_dev):
-            pseudo_loss = tf.nn.l2_loss(output_result)
         with tf.device(gpu_dev):
             opt = tf.train.GradientDescentOptimizer(0.5)
-            exec_op = opt.compute_gradients(pseudo_loss)
+            exec_op = opt.compute_gradients(output_result)
+    elif compute_type=="calibrate":
+        with tf.device(gpu_dev):
+            exec_op = input_image
     else:
-        raise ValueError("Error, compute_type should be either forward or backward")
+        raise ValueError("Error, compute_type should be either forward or backward or calibrate")
    
     #start session
-    with tf.Session(config=tf.ConfigProto(allow_soft_placement=False,log_device_placement=True)) as sess:
+    sess_config=tf.ConfigProto(allow_soft_placement=False,log_device_placement=True)
+    sess_config.gpu_options.allow_growth = True
+    with tf.Session(config=sess_config) as sess:
         sess.run(init_op)
         
         print("warming up for {} steps".format(n_warm))
@@ -88,8 +99,12 @@ def main(input_tensor_shape, data_format, kernel_shape, stride, dtype, n_iter, n
         
         print("running for {} steps".format(n_iter))
         start = time.time()
+        if have_pycuda:
+            pyc.driver.start_profiler()
         for i in range(n_iter):
             result = sess.run(exec_op)
+        if have_pycuda:
+            pyc.driver.stop_profiler()
         end = time.time()
         print("done")
         
