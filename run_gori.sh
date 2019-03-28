@@ -36,18 +36,14 @@ batch_size=64
 data_format="NHWC"
 
 #net_params
-#net_params="VGG-1,224x224x3,3x3x3x64,1 ResNet50-1,224x224x3,7x7x3x64,2 VGG-2,224x224x64,3x3x64x128,2 VGG-3,112x112x128,3x3x128x256,2 ResNet50-2,112x112x64,3x3x64x64,2"
-net_params="VGG-2,224x224x64,3x3x64x128,2"
-#net_params="VGG-3,112x112x128,3x3x128x256,2 ResNet50-2,112x112x64,3x3x64x64,2"
-#net_params="VGG-1,224x224x3,3x3x3x64,1"
+net_params="VGG-1,224x224x3,3x3x3x64,1 ResNet50-1,224x224x3,7x7x3x64,2 VGG-2,224x224x64,3x3x64x128,2 VGG-3,112x112x128,3x3x128x256,2 ResNet50-2,112x112x64,3x3x64x64,2"
 
 
 #step in
 cd ${run_dir}
 
 #list of metrics
-#metrics="time tensor_precision_fu_utilization flop_count_hp flop_count_sp sysmem_read_transactions sysmem_write_transactions dram_read_transactions dram_write_transactions l2_read_transactions l2_write_transactions gld_transactions gst_transactions"
-metrics="gst_transactions gld_transactions"
+metrics="time tensor_precision_fu_utilization flop_count_hp flop_count_sp sysmem_read_transactions sysmem_write_transactions dram_read_transactions dram_write_transactions l2_read_transactions l2_write_transactions gld_transactions gst_transactions"
 #metrics="smsp__sass_thread_inst_executed_op_fadd_pred_on.sum" #,smsp__sass_thread_inst_executed_op_fmul_pred_on.sum,smsp__sass_thread_inst_executed_op_ffma_pred_on.sum"
 
 #iterate over metrics
