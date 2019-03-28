@@ -46,7 +46,8 @@ net_params="VGG-2,224x224x64,3x3x64x128,2"
 cd ${run_dir}
 
 #list of metrics
-metrics="time tensor_precision_fu_utilization flop_count_hp flop_count_sp sysmem_read_transactions sysmem_write_transactions dram_read_transactions dram_write_transactions l2_read_transactions l2_write_transactions gld_transactions gst_transactions"
+#metrics="time tensor_precision_fu_utilization flop_count_hp flop_count_sp sysmem_read_transactions sysmem_write_transactions dram_read_transactions dram_write_transactions l2_read_transactions l2_write_transactions gld_transactions gst_transactions"
+metrics="gst_transactions gld_transactions"
 #metrics="smsp__sass_thread_inst_executed_op_fadd_pred_on.sum" #,smsp__sass_thread_inst_executed_op_fmul_pred_on.sum,smsp__sass_thread_inst_executed_op_ffma_pred_on.sum"
 
 #iterate over metrics
