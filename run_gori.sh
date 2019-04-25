@@ -31,7 +31,7 @@ mkdir -p ${run_dir}
 cp conv2d.py ${run_dir}/
 
 #variables
-prec=32
+prec=16
 batch_size=64
 data_format="NHWC"
 
@@ -41,14 +41,18 @@ data_format="NHWC"
 #net_params_3="ResNet50-2,112x112x64,3x3x64x128,1 ResNet50-2,112x112x64,3x3x64x256,1 ResNet50-2,112x112x64,3x3x64x512,1 ResNet50-2,112x112x64,7x7x64x64,1 ResNet50-2,112x112x64,9x9x64x64,1"
 #net_params_4="ResNet50-2,112x112x64,3x3x64x128,3 ResNet50-2,112x112x64,3x3x64x256,3 ResNet50-2,112x112x64,3x3x64x512,3 ResNet50-2,112x112x64,7x7x64x64,3 ResNet50-2,112x112x64,9x9x64x64,3"
 #net_params="ResNet50-2,112x112x64,3x3x64x64,2 ResNet50-2,112x112x64,3x3x64x64,3"
-net_params="ResNet50-2,112x112x64,3x3x64x128,2"
+net_params="ResNet50-2,112x112x64,3x3x64x256,1 ResNet50-2,112x112x64,3x3x64x256,3"
+#net_params="ResNet50-2,112x112x64,9x9x64x64,3 ResNet50-2,112x112x64,9x9x64x64,2, ResNet50-2,112x112x64,9x9x64x64,1"
 
 
 #step in
 cd ${run_dir}
 
 #list of metrics
-metrics="time tensor_precision_fu_utilization flop_count_hp flop_count_sp sysmem_read_transactions sysmem_write_transactions dram_read_transactions dram_write_transactions l2_read_transactions l2_write_transactions gld_transactions gst_transactions shared_load_transactions shared_store_transactions"
+metrics="time tensor_precision_fu_utilization flop_count_hp flop_count_sp sysmem_read_transactions sysmem_write_transactions dram_read_transactions dram_write_transactions l2_read_transactions l2_write_transactions gld_transactions gst_transactions shared_load_transactions shared_store_transactions atomic_transactions"
+#metrics="l2_tex_read_transactions l2_tex_write_transactions l2_read_transactions l2_write_transactions gld_transactions gst_transactions"
+#metrics="shared_load_transactions shared_store_transactions"
+#"local_store_transactions local_load_transactions"
 #metrics="smsp__sass_thread_inst_executed_op_fadd_pred_on.sum" #,smsp__sass_thread_inst_executed_op_fmul_pred_on.sum,smsp__sass_thread_inst_executed_op_ffma_pred_on.sum"
 
 #iterate over metrics
