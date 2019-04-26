@@ -32,7 +32,7 @@ cp conv2d.py ${run_dir}/
 
 #variables
 prec=16
-batch_size=64
+batch_size=16
 data_format="NHWC"
 
 #net_params
@@ -40,9 +40,10 @@ data_format="NHWC"
 #net_params_2="ResNet50-2,112x112x64,3x3x64x128,2 ResNet50-2,112x112x64,3x3x64x256,2 ResNet50-2,112x112x64,3x3x64x512,2 ResNet50-2,112x112x64,7x7x64x64,2 ResNet50-2,112x112x64,9x9x64x64,2"
 #net_params_3="ResNet50-2,112x112x64,3x3x64x128,1 ResNet50-2,112x112x64,3x3x64x256,1 ResNet50-2,112x112x64,3x3x64x512,1 ResNet50-2,112x112x64,7x7x64x64,1 ResNet50-2,112x112x64,9x9x64x64,1"
 #net_params_4="ResNet50-2,112x112x64,3x3x64x128,3 ResNet50-2,112x112x64,3x3x64x256,3 ResNet50-2,112x112x64,3x3x64x512,3 ResNet50-2,112x112x64,7x7x64x64,3 ResNet50-2,112x112x64,9x9x64x64,3"
-#net_params="ResNet50-2,112x112x64,3x3x64x64,2 ResNet50-2,112x112x64,3x3x64x64,3"
-net_params="ResNet50-2,112x112x64,3x3x64x256,1 ResNet50-2,112x112x64,3x3x64x256,3"
-#net_params="ResNet50-2,112x112x64,9x9x64x64,3 ResNet50-2,112x112x64,9x9x64x64,2, ResNet50-2,112x112x64,9x9x64x64,1"
+#net_params="ResNet50-2,112x112x64,3x3x64x64,2" #ResNet50-2,112x112x64,3x3x64x64,3"
+net_params="ResNet50-2,112x112x64,3x3x64x256,2"
+#net_params="ResNet50-2,112x112x64,9x9x64x64,1" #ResNet50-2,112x112x64,9x9x64x64,2 ResNet50-2,112x112x64,9x9x64x64,3"
+#net_params="ResNet50-2,112x112x64,7x7x64x64,1 ResNet50-2,112x112x64,7x7x64x64,2 ResNet50-2,112x112x64,7x7x64x64,3"
 
 
 #step in
@@ -50,6 +51,7 @@ cd ${run_dir}
 
 #list of metrics
 metrics="time tensor_precision_fu_utilization flop_count_hp flop_count_sp sysmem_read_transactions sysmem_write_transactions dram_read_transactions dram_write_transactions l2_read_transactions l2_write_transactions gld_transactions gst_transactions shared_load_transactions shared_store_transactions atomic_transactions"
+#metrics="atomic_transactions"
 #metrics="l2_tex_read_transactions l2_tex_write_transactions l2_read_transactions l2_write_transactions gld_transactions gst_transactions"
 #metrics="shared_load_transactions shared_store_transactions"
 #"local_store_transactions local_load_transactions"
