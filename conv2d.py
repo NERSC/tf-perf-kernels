@@ -15,7 +15,7 @@ except:
     have_pycuda=False
 
 warnings.simplefilter('ignore')
-tf.logging.set_verbosity(tf.logging.ERROR)
+#tf.logging.set_verbosity(tf.logging.ERROR)
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
 
 
@@ -29,7 +29,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
 #stride_ = [1,2,2,1]
 
 def conv2d(input_data, data_format, kernel_shape, stride_, dtype):
-    weights = tf.Variable(tf.truncated_normal(kernel_shape, stddev=0.03, dtype=dtype), dtype=dtype)
+    weights = tf.Variable(tf.random.truncated_normal(kernel_shape, stddev=0.03, dtype=dtype), dtype=dtype)
     if data_format == "NCHW":
         input_data = tf.transpose(input_data, [0,3,1,2])
         strides = [1,1,stride_, stride_]
@@ -62,7 +62,7 @@ def main(input_tensor_shape, data_format, kernel_shape, stride, dtype, n_iter, n
 
     with tf.device(agg_dev):
         #input tensor
-        input_image = tf.random_uniform(shape=input_tensor_shape, minval=0., maxval=1., dtype=dtype) 
+        input_image = tf.random.uniform(shape=input_tensor_shape, minval=0., maxval=1., dtype=dtype) 
         
     with tf.device(gpu_dev):
         
@@ -70,7 +70,7 @@ def main(input_tensor_shape, data_format, kernel_shape, stride, dtype, n_iter, n
         output_result = conv2d(input_image, data_format, kernel_shape, stride, tensor_type) 
         
         #init ops
-        init_op = tf.global_variables_initializer()
+        init_op = tf.initializers.global_variables()
         
     #resul ops
     if compute_type=="forward":
