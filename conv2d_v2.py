@@ -19,8 +19,21 @@ except:
 #warnings.simplefilter('ignore')
 #tf.logging.set_verbosity(tf.logging.ERROR)
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
-
+os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
 print("Eager execution: {}".format(tf.executing_eagerly()))
+
+#    #set gpu to allow mem growth
+#    gpus = tf.config.experimental.list_physical_devices('GPU')
+#    if gpus:
+#        try:
+#            # Currently, memory growth needs to be the same across GPUs
+#            for gpu in gpus:
+#                tf.config.experimental.set_memory_growth(gpu, True)
+#            #logical_gpus = tf.config.experimental.list_logical_devices('GPU')
+#            #print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
+#        except RuntimeError as e:
+#            # Memory growth must be set before GPUs have been initialized
+#            print(e)
 
 
 def conv2d(input_data, data_format, weights, stride_, dtype):
@@ -82,6 +95,8 @@ def main(input_tensor_shape, data_format, kernel_shape, stride, dtype, n_iter, n
         device = '/xla_cpu:0' if enable_xla else '/cpu:0'
         
     print("Running on device {}".format(device))
+    #tf.config.experimental.set_memory_growth(device, True)
+    #tf.config.gpu.set_per_process_memory_growth(True)
 
     # select commpute type
     if compute_type == "forward":
