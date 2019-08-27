@@ -7,12 +7,15 @@
 #SBATCH --exclusive
 
 #load modules
-module load cuda/10.0
-module load nccl
-module load python3/3.6-anaconda-4.4
+module unload cuda
+module load cuda/10.1.243
+#module load cuda/10.0.130
+module load python/3.7-anaconda-2019.07
 
 #activate env
-source activate thorstendl-gori-py3-tf
+source activate thorstendl-gori-py3-tf2
+#module load tensorflow/gpu-1.13.1-py36
+#module load tensorflow/gpu-2.0.0-beta-py36
 
 #rankspernode
 rankspernode=1
@@ -21,18 +24,19 @@ rankspernode=1
 export OMP_NUM_THREADS=$(( 40 / ${rankspernode} ))
 export OMP_PLACES=threads
 export OMP_PROC_BIND=spread
-sruncmd="srun --mpi=pmi2 -N ${SLURM_NNODES} -n $(( ${SLURM_NNODES} * ${rankspernode} )) -c $(( 80 / ${rankspernode} )) --cpu_bind=cores"
+sruncmd="srun -N ${SLURM_NNODES} -n $(( ${SLURM_NNODES} * ${rankspernode} )) -c $(( 80 / ${rankspernode} )) --cpu_bind=cores"
+
 
 #create run dir
-run_dir=$WORK/tf_cnn_kernels/runs/${SLURM_JOBID}
+run_dir=$WORK/tf_cnn_kernels_2/runs/${SLURM_JOBID}
 mkdir -p ${run_dir}
 
 #copy relevant files
-cp conv2d.py ${run_dir}/
+cp conv2d_v2.py ${run_dir}/
 
 #variables
-prec=32
-batch_size=64
+prec=16
+batch_size=16
 data_format="NHWC"
 
 #net_params
@@ -48,15 +52,15 @@ net_params="ResNet50-2,112x112x64,3x3x64x128,2"
 cd ${run_dir}
 
 #list of metrics
-metrics=""
-#metrics="smsp__sass_thread_inst_executed_op_fadd_pred_on.sum" #,smsp__sass_thread_inst_executed_op_fmul_pred_on.sum,smsp__sass_thread_inst_executed_op_ffma_pred_on.sum"
+#metrics=""
+metrics="smsp__sass_thread_inst_executed_op_fadd_pred_on.sum" #,smsp__sass_thread_inst_executed_op_fmul_pred_on.sum,smsp__sass_thread_inst_executed_op_ffma_pred_on.sum"
 
 #iterate over metrics
 for metric in ${metrics}; do
     
     #iterate over input tuples
     for input in ${net_params}; do 
-	    OLDIFS=$IFS; IFS=','
+        OLDIFS=$IFS; IFS=','
         set -- $input; 
         name=$1
         input_tensor_shape=${2//x/ }
@@ -72,7 +76,7 @@ for metric in ${metrics}; do
     
             #assemble profiling string
             if [ "${metric}" == "time" ]; then
-		profilestring="nv-nsight-cu-cli --profile-from-start off"
+                profilestring="nv-nsight-cu-cli --profile-from-start off"
                 #profilestring="nv-nsight-cu-cli"
             else
                 profilestring="nv-nsight-cu-cli --profile-from-start off --metrics ${metric}"
@@ -90,8 +94,8 @@ for metric in ${metrics}; do
                 --stride ${stride} \
                 --num_warmups 5 \
                 --num_iterations 20 \
-	        --compute_type ${ctype}
-	    done
+                --compute_type ${ctype}
+        done
     done
 done
 

@@ -61,7 +61,7 @@ def main(input_tensor_shape, data_format, num_classes, stride, dtype, n_iter, n_
         with tf.contrib.slim.arg_scope(resnet_v2.resnet_arg_scope(batch_norm_decay=0.9997)):
             output_result, end_points = resnet_v2.resnet_v2_50(input_image,
                                             num_classes=num_classes,
-                                            is_training=is_training,
+                                            is_training=True,
                                             global_pool=True,
                                             output_stride=stride)
         
@@ -118,7 +118,7 @@ if __name__ == '__main__':
     AP.add_argument('--input_tensor_shape', type=int, nargs='+', help='the shape of the input tensor. Note that it depends on data_format (default NHWC)')
     AP.add_argument('--data_format', type=str, default='NHWC', help='choose either channels_last or channels_first')
     AP.add_argument('--num_classes', type=int, default=100, help='number of classes in the resnet')
-    AP.add_argument('--stride', type=int, default=1, help='the stride')
+    AP.add_argument('--stride', type=int, default=None, help='the stride')
     AP.add_argument('--dtype', type=str, default='float32', help='the data type')
     AP.add_argument('--num_iterations', type=int, default=100, help='the number of iterations')
     AP.add_argument('--num_warmups', type=int, default=10, help='number of warmup steps')

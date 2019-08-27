@@ -8,8 +8,9 @@
 
 #load modules
 module unload cuda
-module load cuda/10.0.130
-module load python/3.6-anaconda-4.4
+module load cuda/10.1.243
+#module load cuda/10.0.130
+module load python/3.7-anaconda-2019.07
 
 #activate env
 source activate thorstendl-gori-py3-tf2
@@ -70,7 +71,7 @@ for metric in ${metrics}; do
     
     #iterate over input tuples
     for input in ${net_params}; do 
-	    OLDIFS=$IFS; IFS=','
+        OLDIFS=$IFS; IFS=','
         set -- $input; 
         name=$1
         input_tensor_shape=${2//x/ }
@@ -102,9 +103,9 @@ for metric in ${metrics}; do
                 --stride ${stride} \
                 --num_warmups 5 \
                 --num_iterations 20 \
-	        --compute_type ${ctype}
+                --compute_type ${ctype}
 
-	    done
+        done
     done
 done
 
