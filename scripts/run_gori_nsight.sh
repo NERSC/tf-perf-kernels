@@ -1,19 +1,18 @@
 #!/bin/bash
 #SBATCH -J conv2d_test
 #SBATCH -t 02:00:00
-#SBATCH -A nstaff
 #SBATCH -C gpu
 #SBATCH --gres=gpu:8
 #SBATCH --exclusive
 
 #load modules
-module unload cuda
+#module unload cuda
 module load cuda/10.1.243
 #module load cuda/10.0.130
 module load python/3.7-anaconda-2019.07
 
 #activate env
-source activate thorstendl-gori-py3-tf2
+source activate py3.7-tf2
 #module load tensorflow/gpu-1.13.1-py36
 #module load tensorflow/gpu-2.0.0-beta-py36
 
@@ -28,7 +27,7 @@ sruncmd="srun -N ${SLURM_NNODES} -n $(( ${SLURM_NNODES} * ${rankspernode} )) -c 
 
 
 #create run dir
-run_dir=$WORK/tf_cnn_kernels_2/runs/${SLURM_JOBID}
+run_dir=$PWD/tf_cnn_kernels_2/runs/${SLURM_JOBID}
 mkdir -p ${run_dir}
 
 #copy relevant files
@@ -102,7 +101,7 @@ for metric in ${metrics}; do
 
             #assemble profiling string
             if [ "${metric}" == "time" ]; then
-                profilestring="nsys profile --trace=cublas,cuda,cudnn --capture-range=cudaProfilerApi --stats=true -f true"
+                profilestring="nsys profile --trace=cublas,cuda,cudnn,osrt --capture-range=cudaProfilerApi --stats=true -f true"
                 metrictag="time"
                 #profilestring="nv-nsight-cu-cli"
             else

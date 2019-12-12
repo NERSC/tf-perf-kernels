@@ -1,0 +1,11 @@
+*.o
+*.swp
+*.swo
+
+*.nvvp
+*.nsight-cuprof-report
+
+slurm*.out
+
+__pycache__
+.ipynb_checkpoints
