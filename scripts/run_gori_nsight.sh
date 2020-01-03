@@ -7,17 +7,20 @@
 
 #load modules
 #module unload cuda
-module load cuda/10.1.243
+module load cuda/10.2.89
 #module load cuda/10.0.130
 module load python/3.7-anaconda-2019.07
 
 #activate env
-source activate py3.7-tf2
+source activate py3.7-tf2-cuda-10.2.89
 #module load tensorflow/gpu-1.13.1-py36
 #module load tensorflow/gpu-2.0.0-beta-py36
 
 #rankspernode
 rankspernode=1
+
+#custome link
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${PWD}/../lib
 
 #openmp stuff
 export OMP_NUM_THREADS=$(( 40 / ${rankspernode} ))
@@ -27,7 +30,7 @@ sruncmd="srun -N ${SLURM_NNODES} -n $(( ${SLURM_NNODES} * ${rankspernode} )) -c 
 
 
 #create run dir
-run_dir=$PWD/tf_cnn_kernels_2/runs/${SLURM_JOBID}
+run_dir=$PWD/tf_cnn_kernels_nsight/runs/${SLURM_JOBID}
 mkdir -p ${run_dir}
 
 #copy relevant files
@@ -46,7 +49,6 @@ net_params="VGG-1,224x224x3,3x3x3x64,1 ResNet50-1,224x224x3,7x7x3x64,2 VGG-2,224
 #net_params="ResNet50-2,112x112x64,3x3x64x64,2 ResNet50-2,112x112x64,3x3x64x64,3"
 #net_params="ResNet50-2,112x112x64,3x3x64x128,2"
 
-
 #step in
 cd ${run_dir}
 
@@ -54,14 +56,20 @@ cd ${run_dir}
 #metrics=""
 metrics=\
 "
-time \
 sm__inst_executed_pipe_tensor_op_hmma.avg.pct_of_peak_sustained_active,\
+smsp__sass_thread_inst_executed_op_dadd_pred_on.sum,\
+smsp__sass_thread_inst_executed_op_dmul_pred_on.sum,\
+smsp__sass_thread_inst_executed_op_dfma_pred_on.sum,\
 smsp__sass_thread_inst_executed_op_fadd_pred_on.sum,\
 smsp__sass_thread_inst_executed_op_fmul_pred_on.sum,\
 smsp__sass_thread_inst_executed_op_ffma_pred_on.sum,\
 smsp__sass_thread_inst_executed_op_hadd_pred_on.sum,\
 smsp__sass_thread_inst_executed_op_hmul_pred_on.sum,\
 smsp__sass_thread_inst_executed_op_hfma_pred_on.sum,\
+smsp__cycles_elapsed.sum,\
+smsp__cycles_elapsed.sum.per_second,\
+smsp__pipe_tensor_op_hmma_cycles_active.sum,\
+smsp__pipe_tensor_op_hmma_cycles_active.sum.per_second,\
 l1tex__t_sectors_pipe_lsu_mem_global_op_ld.sum,\
 l1tex__t_sectors_pipe_lsu_mem_global_op_st.sum,\
 l1tex__t_set_accesses_pipe_lsu_mem_global_op_atom.sum,\
@@ -76,6 +84,8 @@ lts__t_sectors_op_read.sum,\
 lts__t_sectors_op_write.sum,\
 dram__sectors_read.sum,\
 dram__sectors_write.sum,\
+dram__bytes_read.sum,\
+dram__bytes_write.sum,\
 lts__t_sectors_aperture_sysmem_op_read.sum,\
 lts__t_sectors_aperture_sysmem_op_write.sum\
 "
