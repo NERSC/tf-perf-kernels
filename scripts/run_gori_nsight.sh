@@ -6,18 +6,19 @@
 #SBATCH --exclusive
 
 #load modules
-#module unload cuda
-module load cuda/10.1.243
-#module load cuda/10.0.130
+module load cuda/10.2.89
 module load python/3.7-anaconda-2019.07
 
 #activate env
-source activate py3.7-tf2
+source activate py3.7-tf2-cuda-10.2.89
 #module load tensorflow/gpu-1.13.1-py36
 #module load tensorflow/gpu-2.0.0-beta-py36
 
 #rankspernode
 rankspernode=1
+
+#custome link
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${PWD}/../lib
 
 #openmp stuff
 export OMP_NUM_THREADS=$(( 40 / ${rankspernode} ))
@@ -27,7 +28,7 @@ sruncmd="srun -N ${SLURM_NNODES} -n $(( ${SLURM_NNODES} * ${rankspernode} )) -c 
 
 
 #create run dir
-run_dir=$PWD/tf_cnn_kernels_2/runs/${SLURM_JOBID}
+run_dir=$PWD/tf_cnn_kernels_nsight/runs/${SLURM_JOBID}
 mkdir -p ${run_dir}
 
 #copy relevant files
@@ -39,29 +40,32 @@ batch_size=16
 data_format="NHWC"
 
 #net_params
-net_params="VGG-1,224x224x3,3x3x3x64,1 ResNet50-1,224x224x3,7x7x3x64,2 VGG-2,224x224x64,3x3x64x128,2 VGG-3,112x112x128,3x3x128x256,2 ResNet50-2,112x112x64,3x3x64x64,2"
+#net_params="VGG-1,224x224x3,3x3x3x64,1 ResNet50-1,224x224x3,7x7x3x64,2 VGG-2,224x224x64,3x3x64x128,2 VGG-3,112x112x128,3x3x128x256,2 ResNet50-2,112x112x64,3x3x64x64,2"
 #net_params_2="ResNet50-2,112x112x64,3x3x64x128,2 ResNet50-2,112x112x64,3x3x64x256,2 ResNet50-2,112x112x64,3x3x64x512,2 ResNet50-2,112x112x64,7x7x64x64,2 ResNet50-2,112x112x64,9x9x64x64,2"
 #net_params_3="ResNet50-2,112x112x64,3x3x64x128,1 ResNet50-2,112x112x64,3x3x64x256,1 ResNet50-2,112x112x64,3x3x64x512,1 ResNet50-2,112x112x64,7x7x64x64,1 ResNet50-2,112x112x64,9x9x64x64,1"
 #net_params_4="ResNet50-2,112x112x64,3x3x64x128,3 ResNet50-2,112x112x64,3x3x64x256,3 ResNet50-2,112x112x64,3x3x64x512,3 ResNet50-2,112x112x64,7x7x64x64,3 ResNet50-2,112x112x64,9x9x64x64,3"
 #net_params="ResNet50-2,112x112x64,3x3x64x64,2 ResNet50-2,112x112x64,3x3x64x64,3"
-#net_params="ResNet50-2,112x112x64,3x3x64x128,2"
-
+net_params="ResNet50-2,112x112x64,3x3x64x128,2"
 
 #step in
 cd ${run_dir}
 
 #list of metrics
 #metrics=""
-metrics=\
-"
-time \
-sm__inst_executed_pipe_tensor_op_hmma.avg.pct_of_peak_sustained_active,\
+metrics="sm__inst_executed_pipe_tensor_op_hmma.avg.pct_of_peak_sustained_active,\
+smsp__sass_thread_inst_executed_op_dadd_pred_on.sum,\
+smsp__sass_thread_inst_executed_op_dmul_pred_on.sum,\
+smsp__sass_thread_inst_executed_op_dfma_pred_on.sum,\
 smsp__sass_thread_inst_executed_op_fadd_pred_on.sum,\
 smsp__sass_thread_inst_executed_op_fmul_pred_on.sum,\
 smsp__sass_thread_inst_executed_op_ffma_pred_on.sum,\
 smsp__sass_thread_inst_executed_op_hadd_pred_on.sum,\
 smsp__sass_thread_inst_executed_op_hmul_pred_on.sum,\
 smsp__sass_thread_inst_executed_op_hfma_pred_on.sum,\
+smsp__cycles_elapsed.sum,\
+smsp__cycles_elapsed.sum.per_second,\
+smsp__pipe_tensor_op_hmma_cycles_active.sum,\
+smsp__pipe_tensor_op_hmma_cycles_active.sum.per_second,\
 l1tex__t_sectors_pipe_lsu_mem_global_op_ld.sum,\
 l1tex__t_sectors_pipe_lsu_mem_global_op_st.sum,\
 l1tex__t_set_accesses_pipe_lsu_mem_global_op_atom.sum,\
@@ -74,10 +78,10 @@ smsp__inst_executed_op_shared_ld.sum,\
 smsp__inst_executed_op_shared_st.sum,\
 lts__t_sectors_op_read.sum,\
 lts__t_sectors_op_write.sum,\
+lts__t_sectors_op_atom.sum,\
+lts__t_sectors_op_red.sum,\
 dram__sectors_read.sum,\
-dram__sectors_write.sum,\
-lts__t_sectors_aperture_sysmem_op_read.sum,\
-lts__t_sectors_aperture_sysmem_op_write.sum\
+dram__sectors_write.sum
 "
 
 #iterate over metrics
@@ -99,18 +103,11 @@ for metric in ${metrics}; do
             #get better metric name
             metricname=${metric//,/-}
 
-            #assemble profiling string
-            if [ "${metric}" == "time" ]; then
-                profilestring="nsys profile --trace=cublas,cuda,cudnn,osrt --capture-range=cudaProfilerApi --stats=true -f true"
-                metrictag="time"
-                #profilestring="nv-nsight-cu-cli"
-            else
-                profilestring="nv-nsight-cu-cli --profile-from-start off --metrics ${metric} -f"
-                metrictag="metrics"
-                #profilestring="nv-nsight-cu-cli --metrics ${metric}"
-            fi
+            profilestring="nv-nsight-cu-cli --profile-from-start off --metrics ${metric} -f"
+            metrictag="metrics"
+
             #profilestring=${profilestring}" -f -o profile.name_${name}.batchsize_${batch_size}.inputshape_${2}.kernelshape_${3}.stride_${4}.dataformat_${data_format}.fp${prec}.pass_${ctype}.metric_${metricname}"
-            profilestring=${profilestring}" -o profile.name_${name}.batchsize_${batch_size}.inputshape_${2}.kernelshape_${3}.stride_${4}.dataformat_${data_format}.fp${prec}.pass_${ctype}.metric_${metrictag}"
+            profilestring=${profilestring}" -o profile.name_${name}.batchsize_${batch_size}.inputshape_${2}.kernelshape_${3}.stride_${4}.dataformat_${data_format}.fp${prec}.pass_${ctype}"
 
             #compute types
             ${sruncmd} ${profilestring} $(which python) -u ./conv2d_v2.py \
