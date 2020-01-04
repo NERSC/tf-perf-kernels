@@ -7,9 +7,7 @@ import re
 import shutil
 import sqlite3
 
-
 def parse_filename(filename):
-    
     #empty dicts
     result={}
     
@@ -22,10 +20,9 @@ def parse_filename(filename):
     result["Data Format"] = re.match(r'.*\.dataformat_(.*?)\.',filename).groups()[0]
     result["Pass"] = re.match(r'.*\.pass_(.*?)\.',filename).groups()[0]
     prec = int(re.match(r'.*\.fp(.*?)\.',filename).groups()[0])
-    result["Precision"] = "FP16" if prec==16 else "FP32";
-    metric = re.match(r'.*\.metric_(.*?)\.',filename).groups()[0]
+    result["Precision"] = ("FP16" if prec==16 else "FP32")
     
-    return result, metric
+    return result
 
 
 def import_nvprof_metric(filename, timeline=False, cuda_dir='/usr/local/cuda'):
