@@ -178,6 +178,7 @@ def import_nsight_metric(filename, cuda_dir='/usr/local/cuda'):
     
     profiledf = profiledf.groupby(["Kernel Name", "Metric Name"]).apply(lambda x: pd.Series([x["Metric Value"].count(),x["Metric Value"].sum()])).reset_index()
     profiledf.rename(columns={0: "Invocations", 1: "Metric Value", "Kernel Name": "Name"}, inplace=True)
+    profiledf['Metric Value'] /=profiledf['Invocations']
     
     #return result
     return profiledf
