@@ -36,16 +36,16 @@ cp ../python/conv2d_v2.py ${run_dir}/
 
 #variables
 prec=16
-batch_size=16
+batch_size=64
 data_format="NHWC"
 
 #net_params
 #net_params="VGG-1,224x224x3,3x3x3x64,1 ResNet50-1,224x224x3,7x7x3x64,2 VGG-2,224x224x64,3x3x64x128,2 VGG-3,112x112x128,3x3x128x256,2 ResNet50-2,112x112x64,3x3x64x64,2"
-#net_params_2="ResNet50-2,112x112x64,3x3x64x128,2 ResNet50-2,112x112x64,3x3x64x256,2 ResNet50-2,112x112x64,3x3x64x512,2 ResNet50-2,112x112x64,7x7x64x64,2 ResNet50-2,112x112x64,9x9x64x64,2"
-#net_params_3="ResNet50-2,112x112x64,3x3x64x128,1 ResNet50-2,112x112x64,3x3x64x256,1 ResNet50-2,112x112x64,3x3x64x512,1 ResNet50-2,112x112x64,7x7x64x64,1 ResNet50-2,112x112x64,9x9x64x64,1"
-#net_params_4="ResNet50-2,112x112x64,3x3x64x128,3 ResNet50-2,112x112x64,3x3x64x256,3 ResNet50-2,112x112x64,3x3x64x512,3 ResNet50-2,112x112x64,7x7x64x64,3 ResNet50-2,112x112x64,9x9x64x64,3"
-#net_params="ResNet50-2,112x112x64,3x3x64x64,2 ResNet50-2,112x112x64,3x3x64x64,3"
-net_params="ResNet50-2,112x112x64,3x3x64x128,2"
+#net_params="ResNet50-2,112x112x64,3x3x64x128,2 ResNet50-2,112x112x64,3x3x64x256,2 ResNet50-2,112x112x64,3x3x64x512,2 ResNet50-2,112x112x64,7x7x64x64,2 ResNet50-2,112x112x64,9x9x64x64,2"
+#net_params="ResNet50-2,112x112x64,3x3x64x128,1 ResNet50-2,112x112x64,3x3x64x256,1 ResNet50-2,112x112x64,3x3x64x512,1 ResNet50-2,112x112x64,7x7x64x64,1 ResNet50-2,112x112x64,9x9x64x64,1"
+#net_params="ResNet50-2,112x112x64,3x3x64x128,3 ResNet50-2,112x112x64,3x3x64x256,3 ResNet50-2,112x112x64,3x3x64x512,3 ResNet50-2,112x112x64,7x7x64x64,3 ResNet50-2,112x112x64,9x9x64x64,3"
+#net_params="ResNet50-2,112x112x64,3x3x64x64,1 ResNet50-2,112x112x64,3x3x64x64,3"
+net_params="ResNet50-2,112x112x64,3x3x64x64,2"
 
 #step in
 cd ${run_dir}
@@ -125,6 +125,3 @@ for metric in ${metrics}; do
     done
 
 done
-
-#copy results
-#cp *.nvvp /project/projectdirs/mpccc/tkurth/Profiling/tf_perf_kernels/data/good_new/
