@@ -39,7 +39,7 @@ batch_size=16
 data_format="NHWC"
 #net_params
 
-net_params="lstm-1,10x32x32,'lstm',50 lstm-2,10x64x64,'lstm',50"
+net_params="lstm-1,10x32x32,'lstm',50 lstm-2,10x64x64,'lstm',50 lstm-3,10x32x32,'lstm',30 lstm-4,10x64x64,'lstm',30 lstm-5,5x32x32,'lstm',30"
 
 #net_params="VGG-1,224x224x3,3x3x3x64,1 ResNet50-1,224x224x3,7x7x3x64,2 VGG-2,224x224x64,3x3x64x128,2 VGG-3,112x112x128,3x3x128x256,2 ResNet50-2,112x112x64,3x3x64x64,2"
 
