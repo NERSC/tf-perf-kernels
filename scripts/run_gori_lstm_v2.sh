@@ -1,8 +1,8 @@
 #!/bin/bash
-#SBATCH -J conv2d_test
+#SBATCH -J lstmv_v2_test
 #SBATCH -t 02:00:00
 #SBATCH -C gpu
-#SBATCH --gres=gpu:8
+#SBATCH --gres=gpu:1
 #SBATCH --exclusive
 
 #load modules
@@ -127,12 +127,12 @@ for metric in ${metrics}; do
                 #profilestring="nv-nsight-cu-cli --metrics ${metric}"
             fi
             #profilestring=${profilestring}" -f -o profile.name_${name}.batchsize_${batch_size}.inputshape_${2}.kernelshape_${3}.stride_${4}.dataformat_${data_format}.fp${prec}.pass_${ctype}.metric_${metricname}"
-            profilestring=${profilestring}" -o profile.name_${name}.batchsize_${batch_size}.inputshape_${2}.kernelshape_${3}.stride_${4}.dataformat_${data_format}.fp${prec}.pass_${ctype}.metric_${metrictag}"
+            profilestring=${profilestring}" -o profile.name_${name}.batchsize_${batch_size}.inputshape_${2}.kernelshape_${3}.stride_${4}.fp${prec}.pass_${ctype}.metric_${metrictag}"
 
             #compute types
             ${sruncmd} ${profilestring} $(which python) -u ./lstm1d_v2.py \
                 --dtype float${prec} \
-                --data_format ${data_format} \
+                #--data_format ${data_format} \
                 --input_tensor_shape ${batch_size} ${input_tensor_shape} \
                 --cell_type ${cell_type} \
                 --n_neurons ${n_neurons} \
