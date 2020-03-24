@@ -2,7 +2,7 @@
 This repository contains scripts calling kernels for TensorFlow along with profiling scripts for Cori-GPU.
 
 ## Prerequisites (Cori)
-`module load python/3.7-anaconda-2019.07 cuda/10.1.243`
+`module load python/3.7-anaconda-2019.07 cuda/10.2.89`
 
 ### [Install TensorFlow (Conda)](https://www.tensorflow.org/install/pip?lang=python3#package-location)
 Create a new virtual environment `py3.7-tf2` by choosing Python 3.7:
@@ -14,7 +14,7 @@ Activate the virtual environment and install TensorFlow (Python 3.7 GPU support)
 ```bash
 source activate py3.7-tf2
 (env) pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-2.0.0-cp37-cp37m-manylinux2010_x86_64.whl
-source deactivate
+conda deactivate
 ```
 
 ### [Install PyCUDA](https://wiki.tiker.net/PyCuda/Installation/Linux)
@@ -30,5 +30,5 @@ cd pycuda-*
 source activate py3.7-tf2
 (env) python configure.py --cuda-root=${CUDA_HOME}
 (env) make install -j8
-source deactivate
+conda deactivate
 ```

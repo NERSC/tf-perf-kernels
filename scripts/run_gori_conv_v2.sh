@@ -1,18 +1,18 @@
 #!/bin/bash
 #SBATCH -J conv2d_test
 #SBATCH -t 02:00:00
-#SBATCH -A nstaff
 #SBATCH -C gpu
-#SBATCH --gres=gpu:8
+#SBATCH --gres=gpu:1
 #SBATCH --exclusive
 
 #load modules
-module unload cuda
-module load cuda/10.0.130
-module load python/3.6-anaconda-4.4
+#module unload cuda
+#module load cuda/10.2.89
+module load cuda/10.1.243
+module load python/3.7-anaconda-2019.07
 
 #activate env
-source activate thorstendl-gori-py3-tf2
+source activate py3.7-tf2
 #module load tensorflow/gpu-1.13.1-py36
 #module load tensorflow/gpu-2.0.0-beta-py36
 
@@ -26,11 +26,11 @@ export OMP_PROC_BIND=spread
 sruncmd="srun -N ${SLURM_NNODES} -n $(( ${SLURM_NNODES} * ${rankspernode} )) -c $(( 80 / ${rankspernode} )) --cpu_bind=cores"
 
 #create run dir
-run_dir=$WORK/tf_cnn_kernels_2/runs/${SLURM_JOBID}
+run_dir=$PWD/tf_cnn_kernels_nvprof/runs/${SLURM_JOBID}
 mkdir -p ${run_dir}
 
 #copy relevant files
-cp conv2d_v2.py ${run_dir}/
+cp ../python/conv2d_v2.py ${run_dir}/
 
 #variables
 prec=16

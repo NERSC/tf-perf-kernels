@@ -1,0 +1,1293 @@
+ccuda/10.1.243(12):ERROR:150: Module 'cuda/10.1.243' conflicts with the currently loaded module(s) 'cuda/10.1.168'
+cuda/10.1.243(12):ERROR:102: Tcl command execution failed: conflict $name
+
+unrecognised option '--capture-range=cudaProfilerApi'
+
+usage: nsys profile [<args>] [application] [<application args>]
+args:
+	-y, --delay=
+	   Collection start delay in seconds. Default is 0.
+
+	-d, --duration=
+	   Collection duration in seconds. If stop-on-exit=false, duration must be greater than 0. Default is 0 seconds.
+
+	-x, --stop-on-exit=
+	   Stop profiling when the launched application exits. Possible values are 'true' or 'false'.
+	   If stop-on-exit=false, duration must be greater than 0. Default is 'true'.
+
+	-e, --env-var=
+	   Set environment variable(s) for application process to be launched.
+	   Environment variable(s) should be defined as 'A=B'. Multiple environment variables can be specified as 'A=B,C=D'
+
+	-h, --help=
+	   This help message.
+
+	-n, --inherit-environment=
+	   Inherit environment variables. Possible values are 'true' or 'false'. Default is 'true'.
+
+	-o, --output=
+	   Output QDSTRM filename.
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.0
+	   Any %q{ENV_VAR} pattern in the filename will be substituted with the value of the environment variable.
+	   Any %h pattern in the filename will be substituted with the hostname of the system.
+	   Default is report#.qdstrm.
+
+	--export=
+	   Create additional output file(s) based on the data collected. Possible values are 'sqlite' or 'none'.
+	   If 'none' is selected, no additional files are created. Default is 'none'.
+
+	--stats=
+	   Generate summary statistics after the collection. Possible values are 'true' or 'false'.
+	   WARNING: When set to true, an SQLite database file will be created after the collection. If the 
+	   collection captures a large amount of data, creating the database file may take several minutes to complete.
+	   Default is 'false'.
+
+	-s, --sample=
+	   Select the entity to sample. Possible values are 'cpu' or 'none'. Select 'none' to disable sampling. Default is 'cpu'.
+
+	-b, --backtrace=
+	   Select the backtrace method to use while sampling. Possible values are 'lbr', 'fp', or 'none'.
+	   Select 'none' to disable backtrace collection. Default is 'lbr'.
+
+	-w, --show-output=
+	   If true, send target process’ stdout and stderr streams to both the console and stdout/stderr files which are added to the QDSTRM file.
+	   If false, only send target process stdout and stderr streams to the stdout/stderr files which are added to the QDSTRM file.
+	   Possible values are 'true' or 'false'. Default is 'true'.
+
+	-t, --trace=
+	   Select the API(s) to trace. Possible values are 'cublas', 'cuda', 'cudnn', 'nvtx', 'opengl', 'osrt', 'openacc', 'vulkan' or 'none'.
+	   Multiple APIs can be selected, separated by commas only (no spaces). If 'none' is selected, no APIs are traced.
+	   Default is 'cuda,opengl,nvtx,osrt'.
+
+	-f, --force-overwrite=
+	   If true, overwrite all existing result files with same output filename (QDSTRM, QDREP, SQLITE).
+	   Possible values are 'true' or 'false'. Default is 'false'.
+
+	--osrt-threshold=
+	   Set the duration, in nanoseconds, that Operating System Runtime (osrt) APIs must execute before they are traced.
+	   Default is 1000 (1 microsecond). Values much less than 1000 may cause significant overhead and result in extremely
+	   large result files. Note that 'osrt-threshold' is a Beta feature.
+
+	--trace-fork-before-exec=
+	   If true, trace any child process after fork and before they call one of the exec functions.
+	   Beware, tracing in this interval relies on undefined behavior and might cause your application to crash or deadlock.
+	   Possible values are 'true' or 'false'. Default is 'false'.
+	   Note that 'trace-fork-before-exec' is a Beta feature.
+
+	--command-file=
+	   Open a file that contains nsys profile switches and parse the switches. Note that command line switches will override
+	   switches found in the command-file.
+unrecognised option '--capture-range=cudaProfilerApi'
+
+usage: nsys profile [<args>] [application] [<application args>]
+args:
+	-y, --delay=
+	   Collection start delay in seconds. Default is 0.
+
+	-d, --duration=
+	   Collection duration in seconds. If stop-on-exit=false, duration must be greater than 0. Default is 0 seconds.
+
+	-x, --stop-on-exit=
+	   Stop profiling when the launched application exits. Possible values are 'true' or 'false'.
+	   If stop-on-exit=false, duration must be greater than 0. Default is 'true'.
+
+	-e, --env-var=
+	   Set environment variable(s) for application process to be launched.
+	   Environment variable(s) should be defined as 'A=B'. Multiple environment variables can be specified as 'A=B,C=D'
+
+	-h, --help=
+	   This help message.
+
+	-n, --inherit-environment=
+	   Inherit environment variables. Possible values are 'true' or 'false'. Default is 'true'.
+
+	-o, --output=
+	   Output QDSTRM filename.
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.1
+	   Any %q{ENV_VAR} pattern in the filename will be substituted with the value of the environment variable.
+	   Any %h pattern in the filename will be substituted with the hostname of the system.
+	   Default is report#.qdstrm.
+
+	--export=
+	   Create additional output file(s) based on the data collected. Possible values are 'sqlite' or 'none'.
+	   If 'none' is selected, no additional files are created. Default is 'none'.
+
+	--stats=
+	   Generate summary statistics after the collection. Possible values are 'true' or 'false'.
+	   WARNING: When set to true, an SQLite database file will be created after the collection. If the 
+	   collection captures a large amount of data, creating the database file may take several minutes to complete.
+	   Default is 'false'.
+
+	-s, --sample=
+	   Select the entity to sample. Possible values are 'cpu' or 'none'. Select 'none' to disable sampling. Default is 'cpu'.
+
+	-b, --backtrace=
+	   Select the backtrace method to use while sampling. Possible values are 'lbr', 'fp', or 'none'.
+	   Select 'none' to disable backtrace collection. Default is 'lbr'.
+
+	-w, --show-output=
+	   If true, send target process’ stdout and stderr streams to both the console and stdout/stderr files which are added to the QDSTRM file.
+	   If false, only send target process stdout and stderr streams to the stdout/stderr files which are added to the QDSTRM file.
+	   Possible values are 'true' or 'false'. Default is 'true'.
+
+	-t, --trace=
+	   Select the API(s) to trace. Possible values are 'cublas', 'cuda', 'cudnn', 'nvtx', 'opengl', 'osrt', 'openacc', 'vulkan' or 'none'.
+	   Multiple APIs can be selected, separated by commas only (no spaces). If 'none' is selected, no APIs are traced.
+	   Default is 'cuda,opengl,nvtx,osrt'.
+
+	-f, --force-overwrite=
+	   If true, overwrite all existing result files with same output filename (QDSTRM, QDREP, SQLITE).
+	   Possible values are 'true' or 'false'. Default is 'false'.
+
+	--osrt-threshold=
+	   Set the duration, in nanoseconds, that Operating System Runtime (osrt) APIs must execute before they are traced.
+	   Default is 1000 (1 microsecond). Values much less than 1000 may cause significant overhead and result in extremely
+	   large result files. Note that 'osrt-threshold' is a Beta feature.
+
+	--trace-fork-before-exec=
+	   If true, trace any child process after fork and before they call one of the exec functions.
+	   Beware, tracing in this interval relies on undefined behavior and might cause your application to crash or deadlock.
+	   Possible values are 'true' or 'false'. Default is 'false'.
+	   Note that 'trace-fork-before-exec' is a Beta feature.
+
+	--command-file=
+	   Open a file that contains nsys profile switches and parse the switches. Note that command line switches will override
+	   switches found in the command-file.
+unrecognised option '--capture-range=cudaProfilerApi'
+
+usage: nsys profile [<args>] [application] [<application args>]
+args:
+	-y, --delay=
+	   Collection start delay in seconds. Default is 0.
+
+	-d, --duration=
+	   Collection duration in seconds. If stop-on-exit=false, duration must be greater than 0. Default is 0 seconds.
+
+	-x, --stop-on-exit=
+	   Stop profiling when the launched application exits. Possible values are 'true' or 'false'.
+	   If stop-on-exit=false, duration must be greater than 0. Default is 'true'.
+
+	-e, --env-var=
+	   Set environment variable(s) for application process to be launched.
+	   Environment variable(s) should be defined as 'A=B'. Multiple environment variables can be specified as 'A=B,C=D'
+
+	-h, --help=
+	   This help message.
+
+	-n, --inherit-environment=
+	   Inherit environment variables. Possible values are 'true' or 'false'. Default is 'true'.
+
+	-o, --output=
+	   Output QDSTRM filename.
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.2
+	   Any %q{ENV_VAR} pattern in the filename will be substituted with the value of the environment variable.
+	   Any %h pattern in the filename will be substituted with the hostname of the system.
+	   Default is report#.qdstrm.
+
+	--export=
+	   Create additional output file(s) based on the data collected. Possible values are 'sqlite' or 'none'.
+	   If 'none' is selected, no additional files are created. Default is 'none'.
+
+	--stats=
+	   Generate summary statistics after the collection. Possible values are 'true' or 'false'.
+	   WARNING: When set to true, an SQLite database file will be created after the collection. If the 
+	   collection captures a large amount of data, creating the database file may take several minutes to complete.
+	   Default is 'false'.
+
+	-s, --sample=
+	   Select the entity to sample. Possible values are 'cpu' or 'none'. Select 'none' to disable sampling. Default is 'cpu'.
+
+	-b, --backtrace=
+	   Select the backtrace method to use while sampling. Possible values are 'lbr', 'fp', or 'none'.
+	   Select 'none' to disable backtrace collection. Default is 'lbr'.
+
+	-w, --show-output=
+	   If true, send target process’ stdout and stderr streams to both the console and stdout/stderr files which are added to the QDSTRM file.
+	   If false, only send target process stdout and stderr streams to the stdout/stderr files which are added to the QDSTRM file.
+	   Possible values are 'true' or 'false'. Default is 'true'.
+
+	-t, --trace=
+	   Select the API(s) to trace. Possible values are 'cublas', 'cuda', 'cudnn', 'nvtx', 'opengl', 'osrt', 'openacc', 'vulkan' or 'none'.
+	   Multiple APIs can be selected, separated by commas only (no spaces). If 'none' is selected, no APIs are traced.
+	   Default is 'cuda,opengl,nvtx,osrt'.
+
+	-f, --force-overwrite=
+	   If true, overwrite all existing result files with same output filename (QDSTRM, QDREP, SQLITE).
+	   Possible values are 'true' or 'false'. Default is 'false'.
+
+	--osrt-threshold=
+	   Set the duration, in nanoseconds, that Operating System Runtime (osrt) APIs must execute before they are traced.
+	   Default is 1000 (1 microsecond). Values much less than 1000 may cause significant overhead and result in extremely
+	   large result files. Note that 'osrt-threshold' is a Beta feature.
+
+	--trace-fork-before-exec=
+	   If true, trace any child process after fork and before they call one of the exec functions.
+	   Beware, tracing in this interval relies on undefined behavior and might cause your application to crash or deadlock.
+	   Possible values are 'true' or 'false'. Default is 'false'.
+	   Note that 'trace-fork-before-exec' is a Beta feature.
+
+	--command-file=
+	   Open a file that contains nsys profile switches and parse the switches. Note that command line switches will override
+	   switches found in the command-file.
+unrecognised option '--capture-range=cudaProfilerApi'
+
+usage: nsys profile [<args>] [application] [<application args>]
+args:
+	-y, --delay=
+	   Collection start delay in seconds. Default is 0.
+
+	-d, --duration=
+	   Collection duration in seconds. If stop-on-exit=false, duration must be greater than 0. Default is 0 seconds.
+
+	-x, --stop-on-exit=
+	   Stop profiling when the launched application exits. Possible values are 'true' or 'false'.
+	   If stop-on-exit=false, duration must be greater than 0. Default is 'true'.
+
+	-e, --env-var=
+	   Set environment variable(s) for application process to be launched.
+	   Environment variable(s) should be defined as 'A=B'. Multiple environment variables can be specified as 'A=B,C=D'
+
+	-h, --help=
+	   This help message.
+
+	-n, --inherit-environment=
+	   Inherit environment variables. Possible values are 'true' or 'false'. Default is 'true'.
+
+	-o, --output=
+	   Output QDSTRM filename.
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.3
+	   Any %q{ENV_VAR} pattern in the filename will be substituted with the value of the environment variable.
+	   Any %h pattern in the filename will be substituted with the hostname of the system.
+	   Default is report#.qdstrm.
+
+	--export=
+	   Create additional output file(s) based on the data collected. Possible values are 'sqlite' or 'none'.
+	   If 'none' is selected, no additional files are created. Default is 'none'.
+
+	--stats=
+	   Generate summary statistics after the collection. Possible values are 'true' or 'false'.
+	   WARNING: When set to true, an SQLite database file will be created after the collection. If the 
+	   collection captures a large amount of data, creating the database file may take several minutes to complete.
+	   Default is 'false'.
+
+	-s, --sample=
+	   Select the entity to sample. Possible values are 'cpu' or 'none'. Select 'none' to disable sampling. Default is 'cpu'.
+
+	-b, --backtrace=
+	   Select the backtrace method to use while sampling. Possible values are 'lbr', 'fp', or 'none'.
+	   Select 'none' to disable backtrace collection. Default is 'lbr'.
+
+	-w, --show-output=
+	   If true, send target process’ stdout and stderr streams to both the console and stdout/stderr files which are added to the QDSTRM file.
+	   If false, only send target process stdout and stderr streams to the stdout/stderr files which are added to the QDSTRM file.
+	   Possible values are 'true' or 'false'. Default is 'true'.
+
+	-t, --trace=
+	   Select the API(s) to trace. Possible values are 'cublas', 'cuda', 'cudnn', 'nvtx', 'opengl', 'osrt', 'openacc', 'vulkan' or 'none'.
+	   Multiple APIs can be selected, separated by commas only (no spaces). If 'none' is selected, no APIs are traced.
+	   Default is 'cuda,opengl,nvtx,osrt'.
+
+	-f, --force-overwrite=
+	   If true, overwrite all existing result files with same output filename (QDSTRM, QDREP, SQLITE).
+	   Possible values are 'true' or 'false'. Default is 'false'.
+
+	--osrt-threshold=
+	   Set the duration, in nanoseconds, that Operating System Runtime (osrt) APIs must execute before they are traced.
+	   Default is 1000 (1 microsecond). Values much less than 1000 may cause significant overhead and result in extremely
+	   large result files. Note that 'osrt-threshold' is a Beta feature.
+
+	--trace-fork-before-exec=
+	   If true, trace any child process after fork and before they call one of the exec functions.
+	   Beware, tracing in this interval relies on undefined behavior and might cause your application to crash or deadlock.
+	   Possible values are 'true' or 'false'. Default is 'false'.
+	   Note that 'trace-fork-before-exec' is a Beta feature.
+
+	--command-file=
+	   Open a file that contains nsys profile switches and parse the switches. Note that command line switches will override
+	   switches found in the command-file.
+unrecognised option '--capture-range=cudaProfilerApi'
+
+usage: nsys profile [<args>] [application] [<application args>]
+args:
+	-y, --delay=
+	   Collection start delay in seconds. Default is 0.
+
+	-d, --duration=
+	   Collection duration in seconds. If stop-on-exit=false, duration must be greater than 0. Default is 0 seconds.
+
+	-x, --stop-on-exit=
+	   Stop profiling when the launched application exits. Possible values are 'true' or 'false'.
+	   If stop-on-exit=false, duration must be greater than 0. Default is 'true'.
+
+	-e, --env-var=
+	   Set environment variable(s) for application process to be launched.
+	   Environment variable(s) should be defined as 'A=B'. Multiple environment variables can be specified as 'A=B,C=D'
+
+	-h, --help=
+	   This help message.
+
+	-n, --inherit-environment=
+	   Inherit environment variables. Possible values are 'true' or 'false'. Default is 'true'.
+
+	-o, --output=
+	   Output QDSTRM filename.
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.4
+	   Any %q{ENV_VAR} pattern in the filename will be substituted with the value of the environment variable.
+	   Any %h pattern in the filename will be substituted with the hostname of the system.
+	   Default is report#.qdstrm.
+
+	--export=
+	   Create additional output file(s) based on the data collected. Possible values are 'sqlite' or 'none'.
+	   If 'none' is selected, no additional files are created. Default is 'none'.
+
+	--stats=
+	   Generate summary statistics after the collection. Possible values are 'true' or 'false'.
+	   WARNING: When set to true, an SQLite database file will be created after the collection. If the 
+	   collection captures a large amount of data, creating the database file may take several minutes to complete.
+	   Default is 'false'.
+
+	-s, --sample=
+	   Select the entity to sample. Possible values are 'cpu' or 'none'. Select 'none' to disable sampling. Default is 'cpu'.
+
+	-b, --backtrace=
+	   Select the backtrace method to use while sampling. Possible values are 'lbr', 'fp', or 'none'.
+	   Select 'none' to disable backtrace collection. Default is 'lbr'.
+
+	-w, --show-output=
+	   If true, send target process’ stdout and stderr streams to both the console and stdout/stderr files which are added to the QDSTRM file.
+	   If false, only send target process stdout and stderr streams to the stdout/stderr files which are added to the QDSTRM file.
+	   Possible values are 'true' or 'false'. Default is 'true'.
+
+	-t, --trace=
+	   Select the API(s) to trace. Possible values are 'cublas', 'cuda', 'cudnn', 'nvtx', 'opengl', 'osrt', 'openacc', 'vulkan' or 'none'.
+	   Multiple APIs can be selected, separated by commas only (no spaces). If 'none' is selected, no APIs are traced.
+	   Default is 'cuda,opengl,nvtx,osrt'.
+
+	-f, --force-overwrite=
+	   If true, overwrite all existing result files with same output filename (QDSTRM, QDREP, SQLITE).
+	   Possible values are 'true' or 'false'. Default is 'false'.
+
+	--osrt-threshold=
+	   Set the duration, in nanoseconds, that Operating System Runtime (osrt) APIs must execute before they are traced.
+	   Default is 1000 (1 microsecond). Values much less than 1000 may cause significant overhead and result in extremely
+	   large result files. Note that 'osrt-threshold' is a Beta feature.
+
+	--trace-fork-before-exec=
+	   If true, trace any child process after fork and before they call one of the exec functions.
+	   Beware, tracing in this interval relies on undefined behavior and might cause your application to crash or deadlock.
+	   Possible values are 'true' or 'false'. Default is 'false'.
+	   Note that 'trace-fork-before-exec' is a Beta feature.
+
+	--command-file=
+	   Open a file that contains nsys profile switches and parse the switches. Note that command line switches will override
+	   switches found in the command-file.
+unrecognised option '--capture-range=cudaProfilerApi'
+
+usage: nsys profile [<args>] [application] [<application args>]
+args:
+	-y, --delay=
+	   Collection start delay in seconds. Default is 0.
+
+	-d, --duration=
+	   Collection duration in seconds. If stop-on-exit=false, duration must be greater than 0. Default is 0 seconds.
+
+	-x, --stop-on-exit=
+	   Stop profiling when the launched application exits. Possible values are 'true' or 'false'.
+	   If stop-on-exit=false, duration must be greater than 0. Default is 'true'.
+
+	-e, --env-var=
+	   Set environment variable(s) for application process to be launched.
+	   Environment variable(s) should be defined as 'A=B'. Multiple environment variables can be specified as 'A=B,C=D'
+
+	-h, --help=
+	   This help message.
+
+	-n, --inherit-environment=
+	   Inherit environment variables. Possible values are 'true' or 'false'. Default is 'true'.
+
+	-o, --output=
+	   Output QDSTRM filename.
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.5
+	   Any %q{ENV_VAR} pattern in the filename will be substituted with the value of the environment variable.
+	   Any %h pattern in the filename will be substituted with the hostname of the system.
+	   Default is report#.qdstrm.
+
+	--export=
+	   Create additional output file(s) based on the data collected. Possible values are 'sqlite' or 'none'.
+	   If 'none' is selected, no additional files are created. Default is 'none'.
+
+	--stats=
+	   Generate summary statistics after the collection. Possible values are 'true' or 'false'.
+	   WARNING: When set to true, an SQLite database file will be created after the collection. If the 
+	   collection captures a large amount of data, creating the database file may take several minutes to complete.
+	   Default is 'false'.
+
+	-s, --sample=
+	   Select the entity to sample. Possible values are 'cpu' or 'none'. Select 'none' to disable sampling. Default is 'cpu'.
+
+	-b, --backtrace=
+	   Select the backtrace method to use while sampling. Possible values are 'lbr', 'fp', or 'none'.
+	   Select 'none' to disable backtrace collection. Default is 'lbr'.
+
+	-w, --show-output=
+	   If true, send target process’ stdout and stderr streams to both the console and stdout/stderr files which are added to the QDSTRM file.
+	   If false, only send target process stdout and stderr streams to the stdout/stderr files which are added to the QDSTRM file.
+	   Possible values are 'true' or 'false'. Default is 'true'.
+
+	-t, --trace=
+	   Select the API(s) to trace. Possible values are 'cublas', 'cuda', 'cudnn', 'nvtx', 'opengl', 'osrt', 'openacc', 'vulkan' or 'none'.
+	   Multiple APIs can be selected, separated by commas only (no spaces). If 'none' is selected, no APIs are traced.
+	   Default is 'cuda,opengl,nvtx,osrt'.
+
+	-f, --force-overwrite=
+	   If true, overwrite all existing result files with same output filename (QDSTRM, QDREP, SQLITE).
+	   Possible values are 'true' or 'false'. Default is 'false'.
+
+	--osrt-threshold=
+	   Set the duration, in nanoseconds, that Operating System Runtime (osrt) APIs must execute before they are traced.
+	   Default is 1000 (1 microsecond). Values much less than 1000 may cause significant overhead and result in extremely
+	   large result files. Note that 'osrt-threshold' is a Beta feature.
+
+	--trace-fork-before-exec=
+	   If true, trace any child process after fork and before they call one of the exec functions.
+	   Beware, tracing in this interval relies on undefined behavior and might cause your application to crash or deadlock.
+	   Possible values are 'true' or 'false'. Default is 'false'.
+	   Note that 'trace-fork-before-exec' is a Beta feature.
+
+	--command-file=
+	   Open a file that contains nsys profile switches and parse the switches. Note that command line switches will override
+	   switches found in the command-file.
+unrecognised option '--capture-range=cudaProfilerApi'
+
+usage: nsys profile [<args>] [application] [<application args>]
+args:
+	-y, --delay=
+	   Collection start delay in seconds. Default is 0.
+
+	-d, --duration=
+	   Collection duration in seconds. If stop-on-exit=false, duration must be greater than 0. Default is 0 seconds.
+
+	-x, --stop-on-exit=
+	   Stop profiling when the launched application exits. Possible values are 'true' or 'false'.
+	   If stop-on-exit=false, duration must be greater than 0. Default is 'true'.
+
+	-e, --env-var=
+	   Set environment variable(s) for application process to be launched.
+	   Environment variable(s) should be defined as 'A=B'. Multiple environment variables can be specified as 'A=B,C=D'
+
+	-h, --help=
+	   This help message.
+
+	-n, --inherit-environment=
+	   Inherit environment variables. Possible values are 'true' or 'false'. Default is 'true'.
+
+	-o, --output=
+	   Output QDSTRM filename.
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.6
+	   Any %q{ENV_VAR} pattern in the filename will be substituted with the value of the environment variable.
+	   Any %h pattern in the filename will be substituted with the hostname of the system.
+	   Default is report#.qdstrm.
+
+	--export=
+	   Create additional output file(s) based on the data collected. Possible values are 'sqlite' or 'none'.
+	   If 'none' is selected, no additional files are created. Default is 'none'.
+
+	--stats=
+	   Generate summary statistics after the collection. Possible values are 'true' or 'false'.
+	   WARNING: When set to true, an SQLite database file will be created after the collection. If the 
+	   collection captures a large amount of data, creating the database file may take several minutes to complete.
+	   Default is 'false'.
+
+	-s, --sample=
+	   Select the entity to sample. Possible values are 'cpu' or 'none'. Select 'none' to disable sampling. Default is 'cpu'.
+
+	-b, --backtrace=
+	   Select the backtrace method to use while sampling. Possible values are 'lbr', 'fp', or 'none'.
+	   Select 'none' to disable backtrace collection. Default is 'lbr'.
+
+	-w, --show-output=
+	   If true, send target process’ stdout and stderr streams to both the console and stdout/stderr files which are added to the QDSTRM file.
+	   If false, only send target process stdout and stderr streams to the stdout/stderr files which are added to the QDSTRM file.
+	   Possible values are 'true' or 'false'. Default is 'true'.
+
+	-t, --trace=
+	   Select the API(s) to trace. Possible values are 'cublas', 'cuda', 'cudnn', 'nvtx', 'opengl', 'osrt', 'openacc', 'vulkan' or 'none'.
+	   Multiple APIs can be selected, separated by commas only (no spaces). If 'none' is selected, no APIs are traced.
+	   Default is 'cuda,opengl,nvtx,osrt'.
+
+	-f, --force-overwrite=
+	   If true, overwrite all existing result files with same output filename (QDSTRM, QDREP, SQLITE).
+	   Possible values are 'true' or 'false'. Default is 'false'.
+
+	--osrt-threshold=
+	   Set the duration, in nanoseconds, that Operating System Runtime (osrt) APIs must execute before they are traced.
+	   Default is 1000 (1 microsecond). Values much less than 1000 may cause significant overhead and result in extremely
+	   large result files. Note that 'osrt-threshold' is a Beta feature.
+
+	--trace-fork-before-exec=
+	   If true, trace any child process after fork and before they call one of the exec functions.
+	   Beware, tracing in this interval relies on undefined behavior and might cause your application to crash or deadlock.
+	   Possible values are 'true' or 'false'. Default is 'false'.
+	   Note that 'trace-fork-before-exec' is a Beta feature.
+
+	--command-file=
+	   Open a file that contains nsys profile switches and parse the switches. Note that command line switches will override
+	   switches found in the command-file.
+unrecognised option '--capture-range=cudaProfilerApi'
+
+usage: nsys profile [<args>] [application] [<application args>]
+args:
+	-y, --delay=
+	   Collection start delay in seconds. Default is 0.
+
+	-d, --duration=
+	   Collection duration in seconds. If stop-on-exit=false, duration must be greater than 0. Default is 0 seconds.
+
+	-x, --stop-on-exit=
+	   Stop profiling when the launched application exits. Possible values are 'true' or 'false'.
+	   If stop-on-exit=false, duration must be greater than 0. Default is 'true'.
+
+	-e, --env-var=
+	   Set environment variable(s) for application process to be launched.
+	   Environment variable(s) should be defined as 'A=B'. Multiple environment variables can be specified as 'A=B,C=D'
+
+	-h, --help=
+	   This help message.
+
+	-n, --inherit-environment=
+	   Inherit environment variables. Possible values are 'true' or 'false'. Default is 'true'.
+
+	-o, --output=
+	   Output QDSTRM filename.
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.7
+	   Any %q{ENV_VAR} pattern in the filename will be substituted with the value of the environment variable.
+	   Any %h pattern in the filename will be substituted with the hostname of the system.
+	   Default is report#.qdstrm.
+
+	--export=
+	   Create additional output file(s) based on the data collected. Possible values are 'sqlite' or 'none'.
+	   If 'none' is selected, no additional files are created. Default is 'none'.
+
+	--stats=
+	   Generate summary statistics after the collection. Possible values are 'true' or 'false'.
+	   WARNING: When set to true, an SQLite database file will be created after the collection. If the 
+	   collection captures a large amount of data, creating the database file may take several minutes to complete.
+	   Default is 'false'.
+
+	-s, --sample=
+	   Select the entity to sample. Possible values are 'cpu' or 'none'. Select 'none' to disable sampling. Default is 'cpu'.
+
+	-b, --backtrace=
+	   Select the backtrace method to use while sampling. Possible values are 'lbr', 'fp', or 'none'.
+	   Select 'none' to disable backtrace collection. Default is 'lbr'.
+
+	-w, --show-output=
+	   If true, send target process’ stdout and stderr streams to both the console and stdout/stderr files which are added to the QDSTRM file.
+	   If false, only send target process stdout and stderr streams to the stdout/stderr files which are added to the QDSTRM file.
+	   Possible values are 'true' or 'false'. Default is 'true'.
+
+	-t, --trace=
+	   Select the API(s) to trace. Possible values are 'cublas', 'cuda', 'cudnn', 'nvtx', 'opengl', 'osrt', 'openacc', 'vulkan' or 'none'.
+	   Multiple APIs can be selected, separated by commas only (no spaces). If 'none' is selected, no APIs are traced.
+	   Default is 'cuda,opengl,nvtx,osrt'.
+
+	-f, --force-overwrite=
+	   If true, overwrite all existing result files with same output filename (QDSTRM, QDREP, SQLITE).
+	   Possible values are 'true' or 'false'. Default is 'false'.
+
+	--osrt-threshold=
+	   Set the duration, in nanoseconds, that Operating System Runtime (osrt) APIs must execute before they are traced.
+	   Default is 1000 (1 microsecond). Values much less than 1000 may cause significant overhead and result in extremely
+	   large result files. Note that 'osrt-threshold' is a Beta feature.
+
+	--trace-fork-before-exec=
+	   If true, trace any child process after fork and before they call one of the exec functions.
+	   Beware, tracing in this interval relies on undefined behavior and might cause your application to crash or deadlock.
+	   Possible values are 'true' or 'false'. Default is 'false'.
+	   Note that 'trace-fork-before-exec' is a Beta feature.
+
+	--command-file=
+	   Open a file that contains nsys profile switches and parse the switches. Note that command line switches will override
+	   switches found in the command-file.
+unrecognised option '--capture-range=cudaProfilerApi'
+
+usage: nsys profile [<args>] [application] [<application args>]
+args:
+	-y, --delay=
+	   Collection start delay in seconds. Default is 0.
+
+	-d, --duration=
+	   Collection duration in seconds. If stop-on-exit=false, duration must be greater than 0. Default is 0 seconds.
+
+	-x, --stop-on-exit=
+	   Stop profiling when the launched application exits. Possible values are 'true' or 'false'.
+	   If stop-on-exit=false, duration must be greater than 0. Default is 'true'.
+
+	-e, --env-var=
+	   Set environment variable(s) for application process to be launched.
+	   Environment variable(s) should be defined as 'A=B'. Multiple environment variables can be specified as 'A=B,C=D'
+
+	-h, --help=
+	   This help message.
+
+	-n, --inherit-environment=
+	   Inherit environment variables. Possible values are 'true' or 'false'. Default is 'true'.
+
+	-o, --output=
+	   Output QDSTRM filename.
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.8
+	   Any %q{ENV_VAR} pattern in the filename will be substituted with the value of the environment variable.
+	   Any %h pattern in the filename will be substituted with the hostname of the system.
+	   Default is report#.qdstrm.
+
+	--export=
+	   Create additional output file(s) based on the data collected. Possible values are 'sqlite' or 'none'.
+	   If 'none' is selected, no additional files are created. Default is 'none'.
+
+	--stats=
+	   Generate summary statistics after the collection. Possible values are 'true' or 'false'.
+	   WARNING: When set to true, an SQLite database file will be created after the collection. If the 
+	   collection captures a large amount of data, creating the database file may take several minutes to complete.
+	   Default is 'false'.
+
+	-s, --sample=
+	   Select the entity to sample. Possible values are 'cpu' or 'none'. Select 'none' to disable sampling. Default is 'cpu'.
+
+	-b, --backtrace=
+	   Select the backtrace method to use while sampling. Possible values are 'lbr', 'fp', or 'none'.
+	   Select 'none' to disable backtrace collection. Default is 'lbr'.
+
+	-w, --show-output=
+	   If true, send target process’ stdout and stderr streams to both the console and stdout/stderr files which are added to the QDSTRM file.
+	   If false, only send target process stdout and stderr streams to the stdout/stderr files which are added to the QDSTRM file.
+	   Possible values are 'true' or 'false'. Default is 'true'.
+
+	-t, --trace=
+	   Select the API(s) to trace. Possible values are 'cublas', 'cuda', 'cudnn', 'nvtx', 'opengl', 'osrt', 'openacc', 'vulkan' or 'none'.
+	   Multiple APIs can be selected, separated by commas only (no spaces). If 'none' is selected, no APIs are traced.
+	   Default is 'cuda,opengl,nvtx,osrt'.
+
+	-f, --force-overwrite=
+	   If true, overwrite all existing result files with same output filename (QDSTRM, QDREP, SQLITE).
+	   Possible values are 'true' or 'false'. Default is 'false'.
+
+	--osrt-threshold=
+	   Set the duration, in nanoseconds, that Operating System Runtime (osrt) APIs must execute before they are traced.
+	   Default is 1000 (1 microsecond). Values much less than 1000 may cause significant overhead and result in extremely
+	   large result files. Note that 'osrt-threshold' is a Beta feature.
+
+	--trace-fork-before-exec=
+	   If true, trace any child process after fork and before they call one of the exec functions.
+	   Beware, tracing in this interval relies on undefined behavior and might cause your application to crash or deadlock.
+	   Possible values are 'true' or 'false'. Default is 'false'.
+	   Note that 'trace-fork-before-exec' is a Beta feature.
+
+	--command-file=
+	   Open a file that contains nsys profile switches and parse the switches. Note that command line switches will override
+	   switches found in the command-file.
+unrecognised option '--capture-range=cudaProfilerApi'
+
+usage: nsys profile [<args>] [application] [<application args>]
+args:
+	-y, --delay=
+	   Collection start delay in seconds. Default is 0.
+
+	-d, --duration=
+	   Collection duration in seconds. If stop-on-exit=false, duration must be greater than 0. Default is 0 seconds.
+
+	-x, --stop-on-exit=
+	   Stop profiling when the launched application exits. Possible values are 'true' or 'false'.
+	   If stop-on-exit=false, duration must be greater than 0. Default is 'true'.
+
+	-e, --env-var=
+	   Set environment variable(s) for application process to be launched.
+	   Environment variable(s) should be defined as 'A=B'. Multiple environment variables can be specified as 'A=B,C=D'
+
+	-h, --help=
+	   This help message.
+
+	-n, --inherit-environment=
+	   Inherit environment variables. Possible values are 'true' or 'false'. Default is 'true'.
+
+	-o, --output=
+	   Output QDSTRM filename.
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.9
+	   Any %q{ENV_VAR} pattern in the filename will be substituted with the value of the environment variable.
+	   Any %h pattern in the filename will be substituted with the hostname of the system.
+	   Default is report#.qdstrm.
+
+	--export=
+	   Create additional output file(s) based on the data collected. Possible values are 'sqlite' or 'none'.
+	   If 'none' is selected, no additional files are created. Default is 'none'.
+
+	--stats=
+	   Generate summary statistics after the collection. Possible values are 'true' or 'false'.
+	   WARNING: When set to true, an SQLite database file will be created after the collection. If the 
+	   collection captures a large amount of data, creating the database file may take several minutes to complete.
+	   Default is 'false'.
+
+	-s, --sample=
+	   Select the entity to sample. Possible values are 'cpu' or 'none'. Select 'none' to disable sampling. Default is 'cpu'.
+
+	-b, --backtrace=
+	   Select the backtrace method to use while sampling. Possible values are 'lbr', 'fp', or 'none'.
+	   Select 'none' to disable backtrace collection. Default is 'lbr'.
+
+	-w, --show-output=
+	   If true, send target process’ stdout and stderr streams to both the console and stdout/stderr files which are added to the QDSTRM file.
+	   If false, only send target process stdout and stderr streams to the stdout/stderr files which are added to the QDSTRM file.
+	   Possible values are 'true' or 'false'. Default is 'true'.
+
+	-t, --trace=
+	   Select the API(s) to trace. Possible values are 'cublas', 'cuda', 'cudnn', 'nvtx', 'opengl', 'osrt', 'openacc', 'vulkan' or 'none'.
+	   Multiple APIs can be selected, separated by commas only (no spaces). If 'none' is selected, no APIs are traced.
+	   Default is 'cuda,opengl,nvtx,osrt'.
+
+	-f, --force-overwrite=
+	   If true, overwrite all existing result files with same output filename (QDSTRM, QDREP, SQLITE).
+	   Possible values are 'true' or 'false'. Default is 'false'.
+
+	--osrt-threshold=
+	   Set the duration, in nanoseconds, that Operating System Runtime (osrt) APIs must execute before they are traced.
+	   Default is 1000 (1 microsecond). Values much less than 1000 may cause significant overhead and result in extremely
+	   large result files. Note that 'osrt-threshold' is a Beta feature.
+
+	--trace-fork-before-exec=
+	   If true, trace any child process after fork and before they call one of the exec functions.
+	   Beware, tracing in this interval relies on undefined behavior and might cause your application to crash or deadlock.
+	   Possible values are 'true' or 'false'. Default is 'false'.
+	   Note that 'trace-fork-before-exec' is a Beta feature.
+
+	--command-file=
+	   Open a file that contains nsys profile switches and parse the switches. Note that command line switches will override
+	   switches found in the command-file.
+unrecognised option '--capture-range=cudaProfilerApi'
+
+usage: nsys profile [<args>] [application] [<application args>]
+args:
+	-y, --delay=
+	   Collection start delay in seconds. Default is 0.
+
+	-d, --duration=
+	   Collection duration in seconds. If stop-on-exit=false, duration must be greater than 0. Default is 0 seconds.
+
+	-x, --stop-on-exit=
+	   Stop profiling when the launched application exits. Possible values are 'true' or 'false'.
+	   If stop-on-exit=false, duration must be greater than 0. Default is 'true'.
+
+	-e, --env-var=
+	   Set environment variable(s) for application process to be launched.
+	   Environment variable(s) should be defined as 'A=B'. Multiple environment variables can be specified as 'A=B,C=D'
+
+	-h, --help=
+	   This help message.
+
+	-n, --inherit-environment=
+	   Inherit environment variables. Possible values are 'true' or 'false'. Default is 'true'.
+
+	-o, --output=
+	   Output QDSTRM filename.
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.10
+	   Any %q{ENV_VAR} pattern in the filename will be substituted with the value of the environment variable.
+	   Any %h pattern in the filename will be substituted with the hostname of the system.
+	   Default is report#.qdstrm.
+
+	--export=
+	   Create additional output file(s) based on the data collected. Possible values are 'sqlite' or 'none'.
+	   If 'none' is selected, no additional files are created. Default is 'none'.
+
+	--stats=
+	   Generate summary statistics after the collection. Possible values are 'true' or 'false'.
+	   WARNING: When set to true, an SQLite database file will be created after the collection. If the 
+	   collection captures a large amount of data, creating the database file may take several minutes to complete.
+	   Default is 'false'.
+
+	-s, --sample=
+	   Select the entity to sample. Possible values are 'cpu' or 'none'. Select 'none' to disable sampling. Default is 'cpu'.
+
+	-b, --backtrace=
+	   Select the backtrace method to use while sampling. Possible values are 'lbr', 'fp', or 'none'.
+	   Select 'none' to disable backtrace collection. Default is 'lbr'.
+
+	-w, --show-output=
+	   If true, send target process’ stdout and stderr streams to both the console and stdout/stderr files which are added to the QDSTRM file.
+	   If false, only send target process stdout and stderr streams to the stdout/stderr files which are added to the QDSTRM file.
+	   Possible values are 'true' or 'false'. Default is 'true'.
+
+	-t, --trace=
+	   Select the API(s) to trace. Possible values are 'cublas', 'cuda', 'cudnn', 'nvtx', 'opengl', 'osrt', 'openacc', 'vulkan' or 'none'.
+	   Multiple APIs can be selected, separated by commas only (no spaces). If 'none' is selected, no APIs are traced.
+	   Default is 'cuda,opengl,nvtx,osrt'.
+
+	-f, --force-overwrite=
+	   If true, overwrite all existing result files with same output filename (QDSTRM, QDREP, SQLITE).
+	   Possible values are 'true' or 'false'. Default is 'false'.
+
+	--osrt-threshold=
+	   Set the duration, in nanoseconds, that Operating System Runtime (osrt) APIs must execute before they are traced.
+	   Default is 1000 (1 microsecond). Values much less than 1000 may cause significant overhead and result in extremely
+	   large result files. Note that 'osrt-threshold' is a Beta feature.
+
+	--trace-fork-before-exec=
+	   If true, trace any child process after fork and before they call one of the exec functions.
+	   Beware, tracing in this interval relies on undefined behavior and might cause your application to crash or deadlock.
+	   Possible values are 'true' or 'false'. Default is 'false'.
+	   Note that 'trace-fork-before-exec' is a Beta feature.
+
+	--command-file=
+	   Open a file that contains nsys profile switches and parse the switches. Note that command line switches will override
+	   switches found in the command-file.
+unrecognised option '--capture-range=cudaProfilerApi'
+
+usage: nsys profile [<args>] [application] [<application args>]
+args:
+	-y, --delay=
+	   Collection start delay in seconds. Default is 0.
+
+	-d, --duration=
+	   Collection duration in seconds. If stop-on-exit=false, duration must be greater than 0. Default is 0 seconds.
+
+	-x, --stop-on-exit=
+	   Stop profiling when the launched application exits. Possible values are 'true' or 'false'.
+	   If stop-on-exit=false, duration must be greater than 0. Default is 'true'.
+
+	-e, --env-var=
+	   Set environment variable(s) for application process to be launched.
+	   Environment variable(s) should be defined as 'A=B'. Multiple environment variables can be specified as 'A=B,C=D'
+
+	-h, --help=
+	   This help message.
+
+	-n, --inherit-environment=
+	   Inherit environment variables. Possible values are 'true' or 'false'. Default is 'true'.
+
+	-o, --output=
+	   Output QDSTRM filename.
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.11
+	   Any %q{ENV_VAR} pattern in the filename will be substituted with the value of the environment variable.
+	   Any %h pattern in the filename will be substituted with the hostname of the system.
+	   Default is report#.qdstrm.
+
+	--export=
+	   Create additional output file(s) based on the data collected. Possible values are 'sqlite' or 'none'.
+	   If 'none' is selected, no additional files are created. Default is 'none'.
+
+	--stats=
+	   Generate summary statistics after the collection. Possible values are 'true' or 'false'.
+	   WARNING: When set to true, an SQLite database file will be created after the collection. If the 
+	   collection captures a large amount of data, creating the database file may take several minutes to complete.
+	   Default is 'false'.
+
+	-s, --sample=
+	   Select the entity to sample. Possible values are 'cpu' or 'none'. Select 'none' to disable sampling. Default is 'cpu'.
+
+	-b, --backtrace=
+	   Select the backtrace method to use while sampling. Possible values are 'lbr', 'fp', or 'none'.
+	   Select 'none' to disable backtrace collection. Default is 'lbr'.
+
+	-w, --show-output=
+	   If true, send target process’ stdout and stderr streams to both the console and stdout/stderr files which are added to the QDSTRM file.
+	   If false, only send target process stdout and stderr streams to the stdout/stderr files which are added to the QDSTRM file.
+	   Possible values are 'true' or 'false'. Default is 'true'.
+
+	-t, --trace=
+	   Select the API(s) to trace. Possible values are 'cublas', 'cuda', 'cudnn', 'nvtx', 'opengl', 'osrt', 'openacc', 'vulkan' or 'none'.
+	   Multiple APIs can be selected, separated by commas only (no spaces). If 'none' is selected, no APIs are traced.
+	   Default is 'cuda,opengl,nvtx,osrt'.
+
+	-f, --force-overwrite=
+	   If true, overwrite all existing result files with same output filename (QDSTRM, QDREP, SQLITE).
+	   Possible values are 'true' or 'false'. Default is 'false'.
+
+	--osrt-threshold=
+	   Set the duration, in nanoseconds, that Operating System Runtime (osrt) APIs must execute before they are traced.
+	   Default is 1000 (1 microsecond). Values much less than 1000 may cause significant overhead and result in extremely
+	   large result files. Note that 'osrt-threshold' is a Beta feature.
+
+	--trace-fork-before-exec=
+	   If true, trace any child process after fork and before they call one of the exec functions.
+	   Beware, tracing in this interval relies on undefined behavior and might cause your application to crash or deadlock.
+	   Possible values are 'true' or 'false'. Default is 'false'.
+	   Note that 'trace-fork-before-exec' is a Beta feature.
+
+	--command-file=
+	   Open a file that contains nsys profile switches and parse the switches. Note that command line switches will override
+	   switches found in the command-file.
+unrecognised option '--capture-range=cudaProfilerApi'
+
+usage: nsys profile [<args>] [application] [<application args>]
+args:
+	-y, --delay=
+	   Collection start delay in seconds. Default is 0.
+
+	-d, --duration=
+	   Collection duration in seconds. If stop-on-exit=false, duration must be greater than 0. Default is 0 seconds.
+
+	-x, --stop-on-exit=
+	   Stop profiling when the launched application exits. Possible values are 'true' or 'false'.
+	   If stop-on-exit=false, duration must be greater than 0. Default is 'true'.
+
+	-e, --env-var=
+	   Set environment variable(s) for application process to be launched.
+	   Environment variable(s) should be defined as 'A=B'. Multiple environment variables can be specified as 'A=B,C=D'
+
+	-h, --help=
+	   This help message.
+
+	-n, --inherit-environment=
+	   Inherit environment variables. Possible values are 'true' or 'false'. Default is 'true'.
+
+	-o, --output=
+	   Output QDSTRM filename.
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.12
+	   Any %q{ENV_VAR} pattern in the filename will be substituted with the value of the environment variable.
+	   Any %h pattern in the filename will be substituted with the hostname of the system.
+	   Default is report#.qdstrm.
+
+	--export=
+	   Create additional output file(s) based on the data collected. Possible values are 'sqlite' or 'none'.
+	   If 'none' is selected, no additional files are created. Default is 'none'.
+
+	--stats=
+	   Generate summary statistics after the collection. Possible values are 'true' or 'false'.
+	   WARNING: When set to true, an SQLite database file will be created after the collection. If the 
+	   collection captures a large amount of data, creating the database file may take several minutes to complete.
+	   Default is 'false'.
+
+	-s, --sample=
+	   Select the entity to sample. Possible values are 'cpu' or 'none'. Select 'none' to disable sampling. Default is 'cpu'.
+
+	-b, --backtrace=
+	   Select the backtrace method to use while sampling. Possible values are 'lbr', 'fp', or 'none'.
+	   Select 'none' to disable backtrace collection. Default is 'lbr'.
+
+	-w, --show-output=
+	   If true, send target process’ stdout and stderr streams to both the console and stdout/stderr files which are added to the QDSTRM file.
+	   If false, only send target process stdout and stderr streams to the stdout/stderr files which are added to the QDSTRM file.
+	   Possible values are 'true' or 'false'. Default is 'true'.
+
+	-t, --trace=
+	   Select the API(s) to trace. Possible values are 'cublas', 'cuda', 'cudnn', 'nvtx', 'opengl', 'osrt', 'openacc', 'vulkan' or 'none'.
+	   Multiple APIs can be selected, separated by commas only (no spaces). If 'none' is selected, no APIs are traced.
+	   Default is 'cuda,opengl,nvtx,osrt'.
+
+	-f, --force-overwrite=
+	   If true, overwrite all existing result files with same output filename (QDSTRM, QDREP, SQLITE).
+	   Possible values are 'true' or 'false'. Default is 'false'.
+
+	--osrt-threshold=
+	   Set the duration, in nanoseconds, that Operating System Runtime (osrt) APIs must execute before they are traced.
+	   Default is 1000 (1 microsecond). Values much less than 1000 may cause significant overhead and result in extremely
+	   large result files. Note that 'osrt-threshold' is a Beta feature.
+
+	--trace-fork-before-exec=
+	   If true, trace any child process after fork and before they call one of the exec functions.
+	   Beware, tracing in this interval relies on undefined behavior and might cause your application to crash or deadlock.
+	   Possible values are 'true' or 'false'. Default is 'false'.
+	   Note that 'trace-fork-before-exec' is a Beta feature.
+
+	--command-file=
+	   Open a file that contains nsys profile switches and parse the switches. Note that command line switches will override
+	   switches found in the command-file.
+unrecognised option '--capture-range=cudaProfilerApi'
+
+usage: nsys profile [<args>] [application] [<application args>]
+args:
+	-y, --delay=
+	   Collection start delay in seconds. Default is 0.
+
+	-d, --duration=
+	   Collection duration in seconds. If stop-on-exit=false, duration must be greater than 0. Default is 0 seconds.
+
+	-x, --stop-on-exit=
+	   Stop profiling when the launched application exits. Possible values are 'true' or 'false'.
+	   If stop-on-exit=false, duration must be greater than 0. Default is 'true'.
+
+	-e, --env-var=
+	   Set environment variable(s) for application process to be launched.
+	   Environment variable(s) should be defined as 'A=B'. Multiple environment variables can be specified as 'A=B,C=D'
+
+	-h, --help=
+	   This help message.
+
+	-n, --inherit-environment=
+	   Inherit environment variables. Possible values are 'true' or 'false'. Default is 'true'.
+
+	-o, --output=
+	   Output QDSTRM filename.
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.13
+	   Any %q{ENV_VAR} pattern in the filename will be substituted with the value of the environment variable.
+	   Any %h pattern in the filename will be substituted with the hostname of the system.
+	   Default is report#.qdstrm.
+
+	--export=
+	   Create additional output file(s) based on the data collected. Possible values are 'sqlite' or 'none'.
+	   If 'none' is selected, no additional files are created. Default is 'none'.
+
+	--stats=
+	   Generate summary statistics after the collection. Possible values are 'true' or 'false'.
+	   WARNING: When set to true, an SQLite database file will be created after the collection. If the 
+	   collection captures a large amount of data, creating the database file may take several minutes to complete.
+	   Default is 'false'.
+
+	-s, --sample=
+	   Select the entity to sample. Possible values are 'cpu' or 'none'. Select 'none' to disable sampling. Default is 'cpu'.
+
+	-b, --backtrace=
+	   Select the backtrace method to use while sampling. Possible values are 'lbr', 'fp', or 'none'.
+	   Select 'none' to disable backtrace collection. Default is 'lbr'.
+
+	-w, --show-output=
+	   If true, send target process’ stdout and stderr streams to both the console and stdout/stderr files which are added to the QDSTRM file.
+	   If false, only send target process stdout and stderr streams to the stdout/stderr files which are added to the QDSTRM file.
+	   Possible values are 'true' or 'false'. Default is 'true'.
+
+	-t, --trace=
+	   Select the API(s) to trace. Possible values are 'cublas', 'cuda', 'cudnn', 'nvtx', 'opengl', 'osrt', 'openacc', 'vulkan' or 'none'.
+	   Multiple APIs can be selected, separated by commas only (no spaces). If 'none' is selected, no APIs are traced.
+	   Default is 'cuda,opengl,nvtx,osrt'.
+
+	-f, --force-overwrite=
+	   If true, overwrite all existing result files with same output filename (QDSTRM, QDREP, SQLITE).
+	   Possible values are 'true' or 'false'. Default is 'false'.
+
+	--osrt-threshold=
+	   Set the duration, in nanoseconds, that Operating System Runtime (osrt) APIs must execute before they are traced.
+	   Default is 1000 (1 microsecond). Values much less than 1000 may cause significant overhead and result in extremely
+	   large result files. Note that 'osrt-threshold' is a Beta feature.
+
+	--trace-fork-before-exec=
+	   If true, trace any child process after fork and before they call one of the exec functions.
+	   Beware, tracing in this interval relies on undefined behavior and might cause your application to crash or deadlock.
+	   Possible values are 'true' or 'false'. Default is 'false'.
+	   Note that 'trace-fork-before-exec' is a Beta feature.
+
+	--command-file=
+	   Open a file that contains nsys profile switches and parse the switches. Note that command line switches will override
+	   switches found in the command-file.
+unrecognised option '--capture-range=cudaProfilerApi'
+
+usage: nsys profile [<args>] [application] [<application args>]
+args:
+	-y, --delay=
+	   Collection start delay in seconds. Default is 0.
+
+	-d, --duration=
+	   Collection duration in seconds. If stop-on-exit=false, duration must be greater than 0. Default is 0 seconds.
+
+	-x, --stop-on-exit=
+	   Stop profiling when the launched application exits. Possible values are 'true' or 'false'.
+	   If stop-on-exit=false, duration must be greater than 0. Default is 'true'.
+
+	-e, --env-var=
+	   Set environment variable(s) for application process to be launched.
+	   Environment variable(s) should be defined as 'A=B'. Multiple environment variables can be specified as 'A=B,C=D'
+
+	-h, --help=
+	   This help message.
+
+	-n, --inherit-environment=
+	   Inherit environment variables. Possible values are 'true' or 'false'. Default is 'true'.
+
+	-o, --output=
+	   Output QDSTRM filename.
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.14
+	   Any %q{ENV_VAR} pattern in the filename will be substituted with the value of the environment variable.
+	   Any %h pattern in the filename will be substituted with the hostname of the system.
+	   Default is report#.qdstrm.
+
+	--export=
+	   Create additional output file(s) based on the data collected. Possible values are 'sqlite' or 'none'.
+	   If 'none' is selected, no additional files are created. Default is 'none'.
+
+	--stats=
+	   Generate summary statistics after the collection. Possible values are 'true' or 'false'.
+	   WARNING: When set to true, an SQLite database file will be created after the collection. If the 
+	   collection captures a large amount of data, creating the database file may take several minutes to complete.
+	   Default is 'false'.
+
+	-s, --sample=
+	   Select the entity to sample. Possible values are 'cpu' or 'none'. Select 'none' to disable sampling. Default is 'cpu'.
+
+	-b, --backtrace=
+	   Select the backtrace method to use while sampling. Possible values are 'lbr', 'fp', or 'none'.
+	   Select 'none' to disable backtrace collection. Default is 'lbr'.
+
+	-w, --show-output=
+	   If true, send target process’ stdout and stderr streams to both the console and stdout/stderr files which are added to the QDSTRM file.
+	   If false, only send target process stdout and stderr streams to the stdout/stderr files which are added to the QDSTRM file.
+	   Possible values are 'true' or 'false'. Default is 'true'.
+
+	-t, --trace=
+	   Select the API(s) to trace. Possible values are 'cublas', 'cuda', 'cudnn', 'nvtx', 'opengl', 'osrt', 'openacc', 'vulkan' or 'none'.
+	   Multiple APIs can be selected, separated by commas only (no spaces). If 'none' is selected, no APIs are traced.
+	   Default is 'cuda,opengl,nvtx,osrt'.
+
+	-f, --force-overwrite=
+	   If true, overwrite all existing result files with same output filename (QDSTRM, QDREP, SQLITE).
+	   Possible values are 'true' or 'false'. Default is 'false'.
+
+	--osrt-threshold=
+	   Set the duration, in nanoseconds, that Operating System Runtime (osrt) APIs must execute before they are traced.
+	   Default is 1000 (1 microsecond). Values much less than 1000 may cause significant overhead and result in extremely
+	   large result files. Note that 'osrt-threshold' is a Beta feature.
+
+	--trace-fork-before-exec=
+	   If true, trace any child process after fork and before they call one of the exec functions.
+	   Beware, tracing in this interval relies on undefined behavior and might cause your application to crash or deadlock.
+	   Possible values are 'true' or 'false'. Default is 'false'.
+	   Note that 'trace-fork-before-exec' is a Beta feature.
+
+	--command-file=
+	   Open a file that contains nsys profile switches and parse the switches. Note that command line switches will override
+	   switches found in the command-file.
+Traceback (most recent call last):
+  File "./conv2d_pytorch.py", line 7, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+==ERROR== The application returned an error code (1)
+==WARNING== No kernels were profiled
+==WARNING== Profiling kernels launched by child processes requires the --target-processes all option
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.15
+Traceback (most recent call last):
+  File "./conv2d_pytorch.py", line 7, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+==ERROR== The application returned an error code (1)
+==WARNING== No kernels were profiled
+==WARNING== Profiling kernels launched by child processes requires the --target-processes all option
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.16
+Traceback (most recent call last):
+  File "./conv2d_pytorch.py", line 7, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+==ERROR== The application returned an error code (1)
+==WARNING== No kernels were profiled
+==WARNING== Profiling kernels launched by child processes requires the --target-processes all option
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.17
+Traceback (most recent call last):
+  File "./conv2d_pytorch.py", line 7, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+==ERROR== The application returned an error code (1)
+==WARNING== No kernels were profiled
+==WARNING== Profiling kernels launched by child processes requires the --target-processes all option
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.18
+Traceback (most recent call last):
+  File "./conv2d_pytorch.py", line 7, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+==ERROR== The application returned an error code (1)
+==WARNING== No kernels were profiled
+==WARNING== Profiling kernels launched by child processes requires the --target-processes all option
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.19
+Traceback (most recent call last):
+  File "./conv2d_pytorch.py", line 7, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+==ERROR== The application returned an error code (1)
+==WARNING== No kernels were profiled
+==WARNING== Profiling kernels launched by child processes requires the --target-processes all option
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.20
+Traceback (most recent call last):
+  File "./conv2d_pytorch.py", line 7, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+==ERROR== The application returned an error code (1)
+==WARNING== No kernels were profiled
+==WARNING== Profiling kernels launched by child processes requires the --target-processes all option
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.21
+Traceback (most recent call last):
+  File "./conv2d_pytorch.py", line 7, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+==ERROR== The application returned an error code (1)
+==WARNING== No kernels were profiled
+==WARNING== Profiling kernels launched by child processes requires the --target-processes all option
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.22
+Traceback (most recent call last):
+  File "./conv2d_pytorch.py", line 7, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+==ERROR== The application returned an error code (1)
+==WARNING== No kernels were profiled
+==WARNING== Profiling kernels launched by child processes requires the --target-processes all option
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.23
+Traceback (most recent call last):
+  File "./conv2d_pytorch.py", line 7, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+==ERROR== The application returned an error code (1)
+==WARNING== No kernels were profiled
+==WARNING== Profiling kernels launched by child processes requires the --target-processes all option
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.24
+Traceback (most recent call last):
+  File "./conv2d_pytorch.py", line 7, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+==ERROR== The application returned an error code (1)
+==WARNING== No kernels were profiled
+==WARNING== Profiling kernels launched by child processes requires the --target-processes all option
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.25
+Traceback (most recent call last):
+  File "./conv2d_pytorch.py", line 7, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+==ERROR== The application returned an error code (1)
+==WARNING== No kernels were profiled
+==WARNING== Profiling kernels launched by child processes requires the --target-processes all option
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.26
+Traceback (most recent call last):
+  File "./conv2d_pytorch.py", line 7, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+==ERROR== The application returned an error code (1)
+==WARNING== No kernels were profiled
+==WARNING== Profiling kernels launched by child processes requires the --target-processes all option
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.27
+Traceback (most recent call last):
+  File "./conv2d_pytorch.py", line 7, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+==ERROR== The application returned an error code (1)
+==WARNING== No kernels were profiled
+==WARNING== Profiling kernels launched by child processes requires the --target-processes all option
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.28
+Traceback (most recent call last):
+  File "./conv2d_pytorch.py", line 7, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+==ERROR== The application returned an error code (1)
+==WARNING== No kernels were profiled
+==WARNING== Profiling kernels launched by child processes requires the --target-processes all option
+srun: error: cgpu04: task 0: Exited with exit code 1
+srun: Terminating job step 422282.29

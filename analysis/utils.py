@@ -7,8 +7,24 @@ import re
 import shutil
 import sqlite3
 
+def parse_filename_nsight(filename):
+    #empty dicts
+    result={}
+    
+    #add network name
+    result["Network Name"] = re.match(r'.*\.name_(.*?)\.',filename).groups()[0]
+    result["Batch Size"] = int(re.match(r'.*\.batchsize_(.*?)\.',filename).groups()[0])
+    result["Input Shape"] = re.match(r'.*\.inputshape_(.*?)\.',filename).groups()[0]
+    result["Kernel Shape"] = re.match(r'.*\.kernelshape_(.*?)\.',filename).groups()[0]
+    result["Stride Size"] = int(re.match(r'.*\.stride_(.*?)\.',filename).groups()[0])
+    result["Data Format"] = re.match(r'.*\.dataformat_(.*?)\.',filename).groups()[0]
+    result["Pass"] = re.match(r'.*\.pass_(.*?)\.',filename).groups()[0]
+    prec = int(re.match(r'.*\.fp(.*?)\.',filename).groups()[0])
+    result["Precision"] = ("FP16" if prec==16 else "FP32")
+    
+    return result
 
-def parse_filename(filename):
+def parse_filename_nvprof(filename):
     
     #empty dicts
     result={}
@@ -162,6 +178,7 @@ def import_nsight_metric(filename, cuda_dir='/usr/local/cuda'):
     
     profiledf = profiledf.groupby(["Kernel Name", "Metric Name"]).apply(lambda x: pd.Series([x["Metric Value"].count(),x["Metric Value"].sum()])).reset_index()
     profiledf.rename(columns={0: "Invocations", 1: "Metric Value", "Kernel Name": "Name"}, inplace=True)
+    profiledf['Metric Value'] /=profiledf['Invocations']
     
     #return result
     return profiledf
