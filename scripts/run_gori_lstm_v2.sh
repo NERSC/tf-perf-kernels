@@ -2,7 +2,7 @@
 #SBATCH -J lstmv_v2_test
 #SBATCH -t 02:00:00
 #SBATCH -C gpu
-#SBATCH --gres=gpu:1
+#SBATCH --gres=gpu:8
 #SBATCH --exclusive
 
 #load modules
