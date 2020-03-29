@@ -6,12 +6,13 @@
 #SBATCH --exclusive
 
 #load modules
-module unload cuda
-module load cuda/10.2.89
+#module unload cuda
+#module load cuda/10.2.89
+module load cuda/10.1.243
 module load python/3.7-anaconda-2019.07
 
 #activate env
-source activate py3.7-tf2-cuda-10.2.89
+source activate py3.7-tf2
 #module load tensorflow/gpu-1.13.1-py36
 #module load tensorflow/gpu-2.0.0-beta-py36
 
