@@ -20,7 +20,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
 
 
 
-def rnn1d(input_data, cell_type, n_neurons, dtype):
+def rnn1d(input_data, weights, cell_type, n_neurons, dtype):
     if cell_type == 'rnn':
         basic_cell = tf.contrib.rnn.BasicRNNCell(num_units=n_neurons)
     elif cell_type == 'lstm':
@@ -32,11 +32,29 @@ def rnn1d(input_data, cell_type, n_neurons, dtype):
 
     outputs, states = tf.nn.dynamic_rnn(basic_cell, input_data, dtype=dtype)
 
-    return outputs, states
-
+    return tf.matmul(outputs[-1], weights['out'])
+    #return outputs, states
+    
 
 def main(input_tensor_shape, cell_type, n_neurons, dtype, n_iter, n_warm, compute_type, enable_xla, agg_placement):
 
+
+
+
+    #num_hidden = input_tensor_shape[1] # hidden layer num of features
+    num_hidden = n_neurons
+    #num_classes = n_neurons # MNIST total classes (0-9 digits)
+
+
+
+    weights = {
+    'out': tf.Variable(tf.random_normal([num_hidden, 1]))
+}
+    #biases = {
+    #'out': tf.Variable(tf.random_normal([num_classes]))
+#}
+
+    
     if dtype == 'float16':
         tensor_type=tf.float16
     elif dtype == 'float32':
@@ -63,7 +81,9 @@ def main(input_tensor_shape, cell_type, n_neurons, dtype, n_iter, n_warm, comput
     with tf.device(gpu_dev):
         
         #create network
-        output_result, states_cur = rnn1d(input_image, cell_type, n_neurons, tensor_type) 
+        #output_result, states_cur = rnn1d(input_image, cell_type, n_neurons, tensor_type) 
+        output_result = rnn1d(input_image, weights, cell_type, n_neurons, tensor_type)
+        final_result = tf.reduce_sum(output_result)
         
         #init ops
         init_op = tf.initializers.global_variables()
@@ -71,11 +91,11 @@ def main(input_tensor_shape, cell_type, n_neurons, dtype, n_iter, n_warm, comput
     #resul ops
     if compute_type=="forward":
         with tf.device(gpu_dev):
-            exec_op = output_result
+            exec_op = final_result
     elif compute_type=="backward":
         with tf.device(gpu_dev):
             opt = tf.train.GradientDescentOptimizer(0.5)
-            exec_op = opt.compute_gradients(output_result)
+            exec_op = opt.compute_gradients(final_result)
     elif compute_type=="calibrate":
         with tf.device(gpu_dev):
             exec_op = input_image
@@ -111,15 +131,15 @@ def main(input_tensor_shape, cell_type, n_neurons, dtype, n_iter, n_warm, comput
 
 if __name__ == '__main__':
     AP = argparse.ArgumentParser()
-    AP.add_argument('--input_tensor_shape', type=int, default=[10,32,32], help='the shape of the input tensor')
+    AP.add_argument('--input_tensor_shape', type=int, default=[10,32,4], help='the shape of the input tensor')
     AP.add_argument('--cell_type', type=str, default='lstm', help='the rnn cell type\
 ')
-    AP.add_argument('--n_neurons', type=int, default=50, help='number of neurons for\
+    AP.add_argument('--n_neurons', type=int, default=20, help='number of neurons for\
  the layer')
     AP.add_argument('--dtype', type=str, default='float32', help='the data type')
     AP.add_argument('--num_iterations', type=int, default=100, help='the number of iterations')
     AP.add_argument('--num_warmups', type=int, default=10, help='number of warmup steps')
-    AP.add_argument('--compute_type', type=str, default="forward", help='forward or backward pass')
+    AP.add_argument('--compute_type', type=str, default="backward", help='forward or backward pass')
     AP.add_argument('--enable_xla', action="store_true", help="enable XLA support")
     AP.add_argument('--aggressive_placement', action="store_true", help='if enabled, place everything which is not convolution on the CPU')
     parsed = AP.parse_args()
