@@ -84,7 +84,7 @@ def run_backward(input_tensor_shape, cell_type, n_neurons, tensor_type):
     grad_weights = tape.gradient(output_result, weights)
     
     #run the stuff
-    _, _ = grad_input.numpy(), grad_input.numpy()
+    _, _ = grad_input.numpy(), grad_weights.numpy()
 
 
 def main(input_tensor_shape, cell_type, n_neurons, dtype, n_iter, n_warm, compute_type, enable_xla):
